@@ -1,0 +1,282 @@
+[
+  {
+    "id": "sue-phillips-scents",
+    "title": "Sue Phillips House of Fragrance — 5 Scents 3D CGI Commercials",
+    "client": "Sue Phillips Fragrance (NYC)",
+    "category": "Fragrance & Perfume CGI",
+    "tools": [
+      "Blender 3D",
+      "Cycles / Octane",
+      "Fluid & Botanical FX",
+      "After Effects"
+    ],
+    "description": "Full 3D fragrance campaign featuring 5 luxury scents (Floral, Fresh, Fruity, Spicy, Woodsy) with dynamic ingredient animations and multi-bottle hero ensemble.",
+    "videos": [
+      {
+        "url": "assets/videos/sue_phillips_5_fragrances.mp4",
+        "label": "5 Fragrances Hero Commercial",
+        "driveId": "1SIAj7-FtL8FVBWqBE_KsvjUJ5TkV50pc"
+      },
+      {
+        "url": "assets/videos/sue_phillips_all_together.mp4",
+        "label": "All Scents Ensemble Reveal",
+        "driveId": "1xZ2NZoaDVrcraCcd9sUTS4ac1F8oAhGH"
+      },
+      {
+        "url": "assets/videos/sue_phillips_floral.mp4",
+        "label": "Floral Scent 3D Animation",
+        "driveId": "1RYUMonrAcabP5xvHtlfW-HngAdSmTbF4"
+      },
+      {
+        "url": "assets/videos/sue_phillips_fresh.mp4",
+        "label": "Fresh Scent 3D Animation",
+        "driveId": "1VxDgQVM8IaA60KthKfd9al43w6lVjaku"
+      },
+      {
+        "url": "assets/videos/sue_phillips_fruity.mp4",
+        "label": "Fruity Scent 3D Animation",
+        "driveId": "1g48tDZAgeyRxOTfQoKNQ5yuff4MXNeZB"
+      },
+      {
+        "url": "assets/videos/sue_phillips_spicy.mp4",
+        "label": "Spicy Scent 3D Animation",
+        "driveId": "1wplb4gO6TGZrVpf1yZOFSsBGc7QW5oZH"
+      },
+      {
+        "url": "assets/videos/sue_phillips_woodsy.mp4",
+        "label": "Woodsy Scent 3D Animation",
+        "driveId": "1kSt7l9X3OR6rcK58WZ3Q_OGCZLHH9bCX"
+      }
+    ],
+    "images": [
+      "assets/images/sue_phillips_floral_still.png",
+      "assets/images/sue_phillips_fresh_still.png",
+      "assets/images/sue_phillips_fruity_still.png",
+      "assets/images/sue_phillips_spicy_still.png",
+      "assets/images/sue_phillips_woodsy_still.png"
+    ]
+  },
+  {
+    "id": "bardot-luxury-perfume",
+    "title": "Bardot Luxury Perfume — 3D Bottle Modeling & Motion Reveal",
+    "client": "Bardot Fragrance",
+    "category": "Fragrance & Perfume CGI",
+    "tools": [
+      "Blender 3D",
+      "Glass Caustics",
+      "PBR Texturing",
+      "Studio Lighting"
+    ],
+    "description": "Photorealistic 3D glass perfume bottle modeling, custom refraction shaders, and slow-motion cinematic product reveal video.",
+    "videos": [
+      {
+        "url": "assets/videos/bardot_perfume_reveal.mp4",
+        "label": "Bardot Perfume Commercial"
+      },
+      {
+        "url": "assets/videos/bardot_slow_motion.mp4",
+        "label": "Bardot Slow-Motion Macro"
+      }
+    ],
+    "images": [
+      "assets/images/bardot_cover.jpg",
+      "assets/images/bardot_render_1.jpg",
+      "assets/images/chanel_perfume_1.jpg",
+      "assets/images/chanel_perfume_2.jpg"
+    ]
+  },
+  {
+    "id": "pink-perfume-campaign",
+    "title": "Pink Signature Eau de Parfum — 3D CGI Reel & Lighting Study",
+    "client": "Signature Fragrance Portfolio",
+    "category": "Fragrance & Perfume CGI",
+    "tools": [
+      "Blender 3D",
+      "Cycles Render",
+      "Caustics & Reflections"
+    ],
+    "description": "High-fashion 3D fragrance bottle animation reel and multi-angle lighting study showcasing metallic collar, glass thickness, and studio rim lighting.",
+    "videos": [
+      {
+        "url": "assets/videos/pink_perfume_reel.mp4",
+        "label": "Pink Perfume 3D Showreel"
+      },
+      {
+        "url": "assets/videos/pink_perfume_loop.mp4",
+        "label": "Pink Perfume Hero Loop"
+      }
+    ],
+    "images": [
+      "assets/images/pplight_1.jpg",
+      "assets/images/pplight_2.jpg",
+      "assets/images/pplight_3.jpg",
+      "assets/images/pplight_4.jpg"
+    ]
+  },
+  {
+    "id": "christianosam-luxury-watch",
+    "title": "Luxury Timepiece — 3D Macro Watch Modeling & Commercial Animation",
+    "client": "Christianosam",
+    "category": "Watches & Hardware CGI",
+    "tools": [
+      "Blender 3D",
+      "Hard-Surface Modeling",
+      "Anisotropic Metals",
+      "Macro Animation"
+    ],
+    "description": "Precision hard-surface 3D watch modeling, brushed steel & sapphire crystal shaders, and cinematic timepiece reveal animation.",
+    "videos": [
+      {
+        "url": "assets/videos/watch_macro_animation.mp4",
+        "label": "Luxury Watch Macro Animation"
+      },
+      {
+        "url": "assets/videos/christianosam_watch_video.mp4",
+        "label": "Timepiece Full Commercial"
+      }
+    ],
+    "images": [
+      "assets/images/watch_render_1.jpg",
+      "assets/images/watch_render_2.jpg"
+    ]
+  },
+  {
+    "id": "beverage-juice-chocolate-cgi",
+    "title": "Beverage, Fruit Juice & Chocolate Drink — 3D Splash & Can/Bottle Animation",
+    "client": "Beverage & Nutrition Campaign",
+    "category": "Beverage & Packaging CGI",
+    "tools": [
+      "Blender 3D",
+      "Liquid & Condensation FX",
+      "Product Animation"
+    ],
+    "description": "Dynamic 3D beverage animations and photorealistic condensation renders for chocolate drink, apple juice, mango nectar, and protein supplement packaging.",
+    "videos": [
+      {
+        "url": "assets/videos/chocolate_drink_anim.mp4",
+        "label": "Chocolate Drink 3D Commercial"
+      },
+      {
+        "url": "assets/videos/juice_bottle_anim.mp4",
+        "label": "Fruit Juice 3D Bottle Animation"
+      }
+    ],
+    "images": [
+      "assets/images/chocolate_drink_1.jpg",
+      "assets/images/apple_juice_1.jpg",
+      "assets/images/apple_juice_2.jpg",
+      "assets/images/mango_drink_1.jpg",
+      "assets/images/protein_tub_1.jpg",
+      "assets/images/protein_tub_2.jpg"
+    ]
+  },
+  {
+    "id": "mark-toothpaste-oralcare",
+    "title": "Mark Oral Care & Purple Toothpaste — 3D Packaging & Tube Modeling",
+    "client": "Mark Stanford",
+    "category": "Skincare & Cosmetics CGI",
+    "tools": [
+      "Blender 3D",
+      "Packaging Visualization",
+      "UV & Label Mapping",
+      "Studio Lighting"
+    ],
+    "description": "High-resolution 3D product modeling and hero packaging renders for purple color-correcting toothpaste tubes, cartons, and applicator kits.",
+    "videos": [],
+    "images": [
+      "assets/images/mark_bubblegum.jpg",
+      "assets/images/mark_design_1.png",
+      "assets/images/mark_design_2.png",
+      "assets/images/mark_final_1.png",
+      "assets/images/mark_final_3.png",
+      "assets/images/mark_toothpaste_shadow.png"
+    ]
+  },
+  {
+    "id": "tastebynaomi-cosmetics-packaging",
+    "title": "TasteByNaomi — 3D Cosmetic Tube & Bottle Packaging Animation",
+    "client": "TasteByNaomi",
+    "category": "Skincare & Cosmetics CGI",
+    "tools": [
+      "Blender 3D",
+      "3D Product Animation",
+      "Custom Label Wrapping"
+    ],
+    "description": "3D product modeling, label visualization, and 360° motion showcase for TasteByNaomi product line.",
+    "videos": [
+      {
+        "url": "assets/videos/tastebynaomi_anim_1.mp4",
+        "label": "TasteByNaomi 3D Product Animation"
+      },
+      {
+        "url": "assets/videos/tastebynaomi_anim_2.mp4",
+        "label": "TasteByNaomi Turntable Loop"
+      }
+    ],
+    "images": [
+      "assets/images/tastebynaomi_render_1.jpg",
+      "assets/images/skincare_cream_1.jpg",
+      "assets/images/foundation_bottle_1.jpg",
+      "assets/images/serum_dropper_1.jpg"
+    ]
+  },
+  {
+    "id": "aeroplane-automotive-hard-surface",
+    "title": "3D Aircraft & Automotive CGI — Hard-Surface Modeling & Animation",
+    "client": "Aviation & Automotive Visualization",
+    "category": "Automotive & Aviation 3D",
+    "tools": [
+      "Blender 3D",
+      "Hard-Surface Sub-D",
+      "Automotive Shaders",
+      "Camera Rigging"
+    ],
+    "description": "Detailed hard-surface 3D aircraft exterior/interior modeling and full 3D automotive driving/studio animation.",
+    "videos": [
+      {
+        "url": "assets/videos/car_animation_full.mp4",
+        "label": "3D Automotive Full Animation"
+      },
+      {
+        "url": "assets/videos/product_video_3.mp4",
+        "label": "3D Product Showcase Reel"
+      }
+    ],
+    "images": [
+      "assets/images/aeroplane_render_1.jpg",
+      "assets/images/aeroplane_render_2.jpg",
+      "assets/images/aeroplane_render_3.jpg",
+      "assets/images/aeroplane_render_5.jpg"
+    ]
+  },
+  {
+    "id": "client-commercial-deliveries",
+    "title": "Commercial Client Deliveries — Hardware, Consumer Products & Interior 3D",
+    "client": "Ripaidan, Alelazza, Ankr1980, Filipjjj & AshleyWagner",
+    "category": "Watches & Hardware CGI",
+    "tools": [
+      "Blender 3D",
+      "Product Visualization",
+      "Exploded & Motion CGI"
+    ],
+    "description": "Selected client delivery renders and animations across hardware markers, electronics, appliances, and architectural product staging.",
+    "videos": [
+      {
+        "url": "assets/videos/ripaidan_marker_anim.mp4",
+        "label": "Ripaidan 3D Marker Animation"
+      },
+      {
+        "url": "assets/videos/marker_motion_clip.mp4",
+        "label": "Marker Product Motion Clip"
+      }
+    ],
+    "images": [
+      "assets/images/alelazza_render_1.jpg",
+      "assets/images/ankr1980_render_1.jpg",
+      "assets/images/ankr1980_new_1.jpg",
+      "assets/images/joelschade_render_1.jpg",
+      "assets/images/ashleywagner_room_1.jpg",
+      "assets/images/bedroom_light_test.jpg"
+    ]
+  }
+]

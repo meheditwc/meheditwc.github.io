@@ -1,1605 +1,785 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MEHEDI | Senior 3D Product Modeler & CGI Animation Specialist</title>
-  <meta name="description" content="Photorealistic 3D Product Modeling, Clean Quad Topology, Exploded-View Hardware CGI & Commercial Product Animation for DTC Brands and Creative Studios." />
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            display: ['Space Grotesk', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
-          },
-          colors: {
-            studio: {
-              950: '#06070a',
-              900: '#0b0d13',
-              800: '#121621',
-              700: '#1c2233',
-              accent: '#38bdf8',
-              neon: '#22d3ee',
-              amber: '#f59e0b',
-              emerald: '#10b981'
-            }
-          }
-        }
-      }
-    };
-  </script>
-
-  <!-- Three.js & OrbitControls CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-
+  <title>Mehedi — 3D Product Modeling &amp; CGI Animation Portfolio</title>
+  <meta name="description" content="Official 3D Product Modeling, Photorealistic Packaging Rendering & CGI Product Animation Portfolio of Mehedi." />
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
   <style>
+    :root {
+      --bg: #07090e;
+      --bg-card: #10141f;
+      --bg-card-hover: #161c2b;
+      --border: #1e2638;
+      --accent: #6366f1;
+      --accent-2: #a855f7;
+      --emerald: #10b981;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
-      background-color: #06070a;
-      color: #f1f5f9;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
       overflow-x: hidden;
     }
-    .glass-panel {
-      background: rgba(15, 19, 29, 0.72);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+    a { color: inherit; text-decoration: none; }
+
+    /* Navbar */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(7, 9, 14, 0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 28px;
     }
-    .glass-pill {
-      background: rgba(255, 255, 255, 0.04);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+    .nav-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
     }
-    .glow-border:hover {
-      border-color: rgba(56, 189, 248, 0.5);
-      box-shadow: 0 0 30px -5px rgba(56, 189, 248, 0.22);
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: -0.02em;
     }
-    .studio-grid-bg {
-      background-size: 40px 40px;
-      background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    .brand-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      color: #fff;
+      font-size: 15px;
     }
-    .radial-spotlight {
-      background: radial-gradient(circle at 50% 35%, rgba(56, 189, 248, 0.14), rgba(16, 185, 129, 0.04) 45%, transparent 75%);
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
     }
-    .active-mode-btn {
-      background: linear-gradient(135deg, #0284c7, #22d3ee) !important;
-      color: #05070b !important;
-      font-weight: 600 !important;
-      border-color: #38bdf8 !important;
-      box-shadow: 0 0 20px rgba(34, 211, 238, 0.35);
+    .nav-links a:hover { color: #fff; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 13.5px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.2s;
     }
-    .active-product-btn {
-      background: rgba(56, 189, 248, 0.16) !important;
-      border-color: #38bdf8 !important;
-      color: #38bdf8 !important;
+    .btn:hover { background: var(--bg-card-hover); border-color: #3b4866; transform: translateY(-1px); }
+    .btn-primary {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      border-color: transparent;
+      box-shadow: 0 4px 18px rgba(99, 102, 241, 0.35);
     }
-    #webgl-canvas-container canvas {
+    .btn-primary:hover { filter: brightness(1.1); }
+    .btn-emerald {
+      background: rgba(16, 185, 129, 0.15);
+      border-color: rgba(16, 185, 129, 0.45);
+      color: #34d399;
+    }
+
+    /* Container */
+    .container { max-width: 1440px; margin: 0 auto; padding: 0 28px; }
+
+    /* Hero Section with Real Showreel Video */
+    .hero {
+      padding: 56px 0 44px;
+      display: grid;
+      grid-template-columns: 1.05fr 1.25fr;
+      gap: 36px;
+      align-items: center;
+    }
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; }
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.13);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #34d399;
+      font-size: 12.5px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      margin-bottom: 18px;
+    }
+    .hero h1 span {
+      background: linear-gradient(135deg, #818cf8, #c084fc, #f472b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 16.5px;
+      color: var(--muted);
+      margin-bottom: 24px;
+      max-width: 600px;
+    }
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+    }
+    .stat-num { font-size: 24px; font-weight: 800; color: #fff; }
+    .stat-label { font-size: 12px; color: var(--muted); }
+
+    /* Hero Real Video Stage */
+    .hero-stage {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+    }
+    .stage-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: #0b0e17;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .stage-title { font-size: 13px; font-weight: 700; color: #e2e8f0; }
+    .reel-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+    .reel-tab {
+      padding: 5px 11px;
+      border-radius: 8px;
+      font-size: 11.5px;
+      font-weight: 700;
+      background: #141927;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      cursor: pointer;
+    }
+    .reel-tab.active, .reel-tab:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+    .hero-video-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      background: #000;
+    }
+    .hero-video-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #000;
+    }
+
+    /* Section Headers */
+    .section { padding: 54px 0; border-top: 1px solid var(--border); }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .section-head h2 { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; }
+    .section-head p { color: var(--muted); font-size: 15px; max-width: 650px; }
+
+    /* Filter Tabs */
+    .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+    .filter-btn {
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(410px, 1fr));
+      gap: 24px;
+    }
+    @media (max-width: 520px) {
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .project-card:hover {
+      transform: translateY(-3px);
+      border-color: #3b4866;
+    }
+    .media-box {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 11;
+      background: #05070b;
+      overflow: hidden;
+    }
+    .media-box video, .media-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       display: block;
-      width: 100% !important;
-      height: 100% !important;
-      cursor: grab;
     }
-    #webgl-canvas-container canvas:active {
-      cursor: grabbing;
+    .media-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(7, 9, 14, 0.84);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.14);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #e2e8f0;
     }
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #06070a; }
-    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #38bdf8; }
+    .card-body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
+    .card-client { font-size: 12px; font-weight: 700; color: #818cf8; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
+    .card-title { font-size: 18px; font-weight: 800; margin-bottom: 8px; color: #fff; }
+    .card-desc { font-size: 13.5px; color: var(--muted); margin-bottom: 14px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+    .tag {
+      font-size: 11px;
+      padding: 3px 9px;
+      border-radius: 6px;
+      background: #171d2e;
+      color: #cbd5e1;
+      border: 1px solid #26304a;
+      font-weight: 600;
+    }
+
+    /* Thumbnails strip inside each project card */
+    .thumb-strip {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      margin-top: auto;
+    }
+    .thumb-item {
+      width: 64px;
+      height: 48px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid transparent;
+      cursor: pointer;
+      flex-shrink: 0;
+      background: #000;
+      position: relative;
+    }
+    .thumb-item.active, .thumb-item:hover { border-color: var(--accent); }
+    .thumb-item img, .thumb-item video { width: 100%; height: 100%; object-fit: cover; }
+    .thumb-play {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.45);
+      font-size: 14px;
+      color: #fff;
+    }
+
+    /* All Videos Gallery Grid */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+    }
+    .video-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .video-card video {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      background: #000;
+      object-fit: contain;
+      display: block;
+    }
+    .video-card-info {
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+    .video-card-title { font-size: 13.5px; font-weight: 700; color: #fff; }
+    .video-card-sub { font-size: 11.5px; color: var(--muted); }
+
+    /* Interactive Real GLB 3D Model Viewer */
+    .glb-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+    model-viewer {
+      width: 100%;
+      height: 480px;
+      background: radial-gradient(circle at center, #1b2234 0%, #090c14 100%);
+    }
+
+    /* All Images Masonry / Gallery */
+    .img-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .img-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .img-card:hover { transform: scale(1.02); border-color: var(--accent); }
+    .img-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Lightbox Modal */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-content {
+      max-width: 1100px;
+      max-height: 90vh;
+      position: relative;
+    }
+    .lightbox-content img, .lightbox-content video {
+      max-width: 100%;
+      max-height: 85vh;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: -42px;
+      right: 0;
+      background: #fff;
+      color: #000;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+      margin-top: 60px;
+      color: var(--muted);
+      font-size: 14px;
+    }
   </style>
 </head>
-<body class="antialiased selection:bg-sky-400 selection:text-slate-950 studio-grid-bg">
+<body>
 
-  <!-- TOP ANNOUNCEMENT / AVAILABILITY BAR -->
-  <div class="w-full bg-gradient-to-r from-sky-950/80 via-slate-900 to-emerald-950/80 border-b border-white/10 text-xs py-2 px-4">
-    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
-      <div class="flex items-center gap-2">
-        <span class="relative flex h-2 w-2">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-        </span>
-        <span class="font-mono text-emerald-300 font-medium">STUDIO STATUS:</span>
-        <span class="text-slate-300">Booking Q2/Q3 DTC Product Launch Sprints & Studio Overflow Retainers</span>
-      </div>
-      <div class="flex items-center gap-4 font-mono">
-        <a href="#free-test" class="text-sky-400 hover:text-sky-300 underline underline-offset-4">Claim Free 48-Hr 3D Lighting / Mesh Test →</a>
-        <button onclick="toggleCustomizerDrawer()" class="hidden sm:inline-flex items-center gap-1.5 text-amber-300 hover:text-amber-200 bg-amber-500/10 border border-amber-500/30 px-2.5 py-0.5 rounded">
-          <span>⚙️ Customize / Add Your Renders</span>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- STICKY NAVIGATION -->
-  <header class="sticky top-0 z-40 glass-panel border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-3 group">
-        <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-sky-400 to-emerald-400 p-[1px]">
-          <div class="w-full h-full bg-studio-950 rounded-[7px] flex items-center justify-center font-display font-bold text-lg text-sky-400 group-hover:text-white transition">
-            M
-          </div>
-        </div>
-        <div>
-          <span class="font-display font-bold tracking-tight text-white text-lg">MEHEDI</span>
-          <span class="hidden sm:inline-block ml-2 text-[11px] font-mono uppercase px-2 py-0.5 rounded bg-white/5 text-sky-400 border border-white/10">3D CGI & LookDev</span>
-        </div>
+  <!-- Navigation -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="#" class="brand">
+        <span class="brand-badge">3D</span>
+        <span>MEHEDI &middot; 3D PRODUCT STUDIO</span>
       </a>
-
-      <nav class="hidden md:flex items-center gap-7 text-sm text-slate-300">
-        <a href="#inspector" class="hover:text-sky-400 transition">Interactive 3D Stage</a>
-        <a href="#work" class="hover:text-sky-400 transition">Case Studies (6)</a>
-        <a href="#before-after" class="hover:text-sky-400 transition">CAD-to-4K Pipeline</a>
-        <a href="#roi" class="hover:text-sky-400 transition">Brands & Studios</a>
-        <button onclick="toggleCustomizerDrawer()" class="text-xs font-mono text-amber-300 hover:text-amber-200 border border-amber-500/30 bg-amber-500/10 px-2.5 py-1 rounded-md transition">
-          + Upload Custom Renders
-        </button>
+      <nav class="nav-links">
+        <a href="#projects">Client Case Studies (9)</a>
+        <a href="#animations">3D Animations (19 Videos)</a>
+        <a href="#real-3d-models">Interactive 3D Models (.GLB)</a>
+        <a href="#renders">4K Studio Renders (45+)</a>
+        <a href="https://www.behance.net/meheditwcm" target="_blank" rel="noopener">Behance &#8599;</a>
+        <a href="https://www.linkedin.com/in/meheditwcm/" target="_blank" rel="noopener">LinkedIn &#8599;</a>
       </nav>
-
-      <div class="flex items-center gap-2.5">
-        <a href="https://www.behance.net/meheditwcm" target="_blank" rel="noopener" class="glass-pill hover:border-sky-400/50 px-3 py-1.5 rounded-lg text-xs font-mono text-slate-200 flex items-center gap-1.5 transition" title="Behance Portfolio">
-          <span class="font-display font-bold text-sky-400">Bē</span>
-          <span class="hidden sm:inline">behance.net/meheditwcm</span>
-        </a>
-        <a href="https://www.linkedin.com/in/meheditwcm/" target="_blank" rel="noopener" class="glass-pill hover:border-sky-400/50 px-3 py-1.5 rounded-lg text-xs font-mono text-slate-200 flex items-center gap-1.5 transition" title="LinkedIn Profile">
-          <svg class="w-3.5 h-3.5 text-sky-400 fill-current" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
-          <span class="hidden lg:inline">/in/meheditwcm</span>
-        </a>
-        <a href="#free-test" class="bg-gradient-to-r from-sky-400 to-cyan-300 hover:from-sky-300 hover:to-cyan-200 text-slate-950 font-semibold text-xs sm:text-sm px-4 py-2 rounded-lg shadow-lg shadow-sky-500/20 transition">
-          Free 3D Render Test
-        </a>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <a class="btn btn-emerald" href="https://www.behance.net/meheditwcm" target="_blank" rel="noopener">Behance Portfolio</a>
+        <a class="btn btn-primary" href="mailto:meheditwcm@gmail.com?subject=3D%20Product%20Modeling%20%26%20Animation%20Project%20Inquiry">Hire Me / Request Free 3D Test</a>
       </div>
     </div>
   </header>
 
-  <!-- HERO + LIVE INTERACTIVE 3D WEBGL STAGE -->
-  <section id="inspector" class="relative pt-8 pb-20 lg:pt-12 lg:pb-24 radial-spotlight border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-
-        <!-- Left Column: Copy & Value Proposition (5 cols) -->
-        <div class="lg:col-span-5 space-y-6">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-pill text-xs font-mono text-sky-300">
-            <span class="w-2 h-2 rounded-full bg-sky-400"></span>
-            <span>HARD-SURFACE SUB-D • LOOKDEV • PRODUCT MOTION</span>
-          </div>
-
-          <h1 class="font-display text-4xl sm:text-5xl font-bold tracking-tight text-white leading-[1.12]">
-            Photorealistic <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-cyan-300 to-emerald-300">3D Product Models</span> &amp; CGI Launch Animations.
-          </h1>
-
-          <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
-            Helping <strong class="text-white">DTC Hardware, Watch, Beauty &amp; Beverage Brands</strong> replace $15K photo shoots with high-converting 3D product visuals—and providing <strong class="text-white">3D/VFX Studios</strong> with clean, subdivision-ready quad topology on deadline.
-          </p>
-
-          <!-- Technical Stack Pills -->
-          <div class="flex flex-wrap gap-2 pt-1">
-            <span class="text-xs font-mono px-2.5 py-1 rounded bg-white/5 border border-white/10 text-slate-300">Blender 3D</span>
-            <span class="text-xs font-mono px-2.5 py-1 rounded bg-white/5 border border-white/10 text-slate-300">Cinema 4D</span>
-            <span class="text-xs font-mono px-2.5 py-1 rounded bg-white/5 border border-white/10 text-slate-300">Octane / Redshift</span>
-            <span class="text-xs font-mono px-2.5 py-1 rounded bg-white/5 border border-white/10 text-slate-300">Substance 3D Painter</span>
-            <span class="text-xs font-mono px-2.5 py-1 rounded bg-white/5 border border-white/10 text-slate-300">CAD / STEP Cleanup</span>
-            <span class="text-xs font-mono px-2.5 py-1 rounded bg-white/5 border border-white/10 text-slate-300">Liquid &amp; Rigid Sim</span>
-          </div>
-
-          <!-- Primary CTA Buttons -->
-          <div class="flex flex-wrap items-center gap-3 pt-2">
-            <a href="#free-test" class="bg-gradient-to-r from-sky-400 to-cyan-300 hover:from-sky-300 hover:to-cyan-200 text-slate-950 font-display font-bold px-6 py-3.5 rounded-xl shadow-xl shadow-sky-500/20 flex items-center gap-2 transition">
-              <span>Request Free 48-Hr 3D Lighting Test</span>
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-            </a>
-            <a href="https://www.behance.net/meheditwcm" target="_blank" rel="noopener" class="glass-pill hover:border-sky-400/50 text-white font-medium px-5 py-3.5 rounded-xl flex items-center gap-2 transition">
-              <span class="font-display font-bold text-sky-400">Bē</span>
-              <span>Full Behance Portfolio</span>
-            </a>
-            <a href="https://www.linkedin.com/in/meheditwcm/" target="_blank" rel="noopener" class="glass-pill hover:border-sky-400/50 text-slate-200 font-medium px-4 py-3.5 rounded-xl flex items-center gap-1.5 text-sm transition">
-              <span>LinkedIn</span>
-              <span>↗</span>
-            </a>
-          </div>
-
-          <!-- Trust Metrics -->
-          <div class="grid grid-cols-3 gap-4 pt-4 border-t border-white/10">
-            <div>
-              <div class="font-display text-2xl font-bold text-white">100% Quad</div>
-              <div class="text-xs text-slate-400 font-mono">Sub-D Ready Topology</div>
-            </div>
-            <div>
-              <div class="font-display text-2xl font-bold text-sky-400">3.2x ROAS</div>
-              <div class="text-xs text-slate-400 font-mono">Avg CGI Ad Thumbstop</div>
-            </div>
-            <div>
-              <div class="font-display text-2xl font-bold text-emerald-400">48 Hours</div>
-              <div class="text-xs text-slate-400 font-mono">First Clay &amp; Light Pass</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right Column: LIVE INTERACTIVE 3D WEBGL INSPECTOR STAGE (7 cols) -->
-        <div class="lg:col-span-7">
-          <div class="glass-panel rounded-2xl border border-white/15 overflow-hidden shadow-2xl shadow-sky-950/40">
-
-            <!-- Stage Top Bar: Product Switcher -->
-            <div class="bg-studio-900/90 border-b border-white/10 px-4 py-3 flex flex-wrap items-center justify-between gap-2">
-              <div class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-amber-400/80"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400/80"></span>
-                <span class="ml-2 font-mono text-xs text-slate-300 font-semibold">LIVE WEBGL 3D PRODUCT INSPECTOR</span>
-              </div>
-
-              <!-- 3 Procedural 3D Hero Products Switcher -->
-              <div class="flex items-center gap-1.5 bg-studio-950 p-1 rounded-lg border border-white/10">
-                <button id="prod-watch" onclick="switchProduct('watch')" class="product-btn active-product-btn text-xs font-mono px-2.5 py-1 rounded border border-transparent transition">
-                  ⌚ Luxury Chronograph
-                </button>
-                <button id="prod-serum" onclick="switchProduct('serum')" class="product-btn text-xs font-mono px-2.5 py-1 rounded border border-transparent text-slate-400 hover:text-white transition">
-                  💧 Elixir Perfume/Serum
-                </button>
-                <button id="prod-audio" onclick="switchProduct('audio')" class="product-btn text-xs font-mono px-2.5 py-1 rounded border border-transparent text-slate-400 hover:text-white transition">
-                  🎧 Cyber Audio Earbuds
-                </button>
-              </div>
-            </div>
-
-            <!-- 3D Viewport Canvas Container -->
-            <div class="relative w-full h-[430px] sm:h-[480px] bg-gradient-to-b from-[#0b101b] via-[#070a10] to-[#050608]" id="webgl-canvas-container">
-              
-              <!-- Floating Telemetry HUD (Top Left) -->
-              <div class="absolute top-3 left-3 z-10 pointer-events-none glass-pill rounded-lg px-3 py-2 text-[11px] font-mono space-y-1">
-                <div class="flex items-center gap-2 text-sky-400 font-semibold">
-                  <span>ASSET:</span>
-                  <span id="hud-asset-name" class="text-white">CHRONO-01 TITANIUM TOURBILLON</span>
-                </div>
-                <div class="text-slate-400">TOPOLOGY: <span id="hud-polycount" class="text-emerald-300">Clean Sub-D Quads (42,800 Tris)</span></div>
-                <div class="text-slate-400">SHADER: <span id="hud-shader" class="text-slate-200">PBR Anisotropic Metal + Sapphire Glass</span></div>
-              </div>
-
-              <!-- Floating Interaction Hint (Top Right) -->
-              <div class="absolute top-3 right-3 z-10 pointer-events-none hidden sm:flex items-center gap-1.5 glass-pill rounded-full px-3 py-1 text-[11px] font-mono text-slate-300">
-                <span>🖱️ Drag to Orbit • Scroll to Zoom</span>
-              </div>
-
-              <!-- Exploded Distance Indicator (Bottom Left) -->
-              <div class="absolute bottom-3 left-3 z-10 pointer-events-none glass-pill rounded-lg px-3 py-1.5 text-[11px] font-mono text-slate-300">
-                <span>ASSEMBLY STATE: </span>
-                <span id="hud-assembly-state" class="text-emerald-400 font-semibold">ASSEMBLED (0% EXPLODED)</span>
-              </div>
-
-              <!-- Turntable Auto-Rotate Toggle (Bottom Right) -->
-              <button onclick="toggleAutoRotate()" id="btn-autorotate" class="absolute bottom-3 right-3 z-10 glass-pill hover:border-sky-400/50 rounded-lg px-3 py-1.5 text-[11px] font-mono text-sky-300 transition">
-                🔄 Auto-Turntable: ON
-              </button>
-            </div>
-
-            <!-- Stage Bottom Control Console: Mode 1, Mode 2, Mode 3 + Slider -->
-            <div class="bg-studio-900/95 border-t border-white/10 p-4 space-y-3">
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-                <!-- Mode 1: Photoreal Studio Shader -->
-                <button id="mode-studio" onclick="setRenderMode('studio')" class="active-mode-btn flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl border border-white/15 bg-white/5 text-xs font-mono text-slate-200 transition">
-                  <span>✨ Mode 1: Photoreal Studio Shader</span>
-                </button>
-
-                <!-- Mode 2: Clean Quad Wireframe Topology -->
-                <button id="mode-wireframe" onclick="setRenderMode('wireframe')" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl border border-white/15 bg-white/5 hover:border-sky-400/40 text-xs font-mono text-slate-200 transition">
-                  <span>🕸️ Mode 2: Clean Quad Wireframe</span>
-                </button>
-
-                <!-- Mode 3: Exploded View Animation -->
-                <button id="mode-explode" onclick="toggleExplodeView()" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl border border-amber-400/40 bg-amber-500/10 hover:bg-amber-500/20 text-xs font-mono text-amber-300 font-semibold transition">
-                  <span id="explode-btn-label">💥 Mode 3: Explode Components</span>
-                </button>
-              </div>
-
-              <!-- Interactive Explode Scrubber & Lighting Preset Bar -->
-              <div class="flex flex-wrap items-center justify-between gap-4 pt-1 text-xs font-mono text-slate-400">
-                <div class="flex items-center gap-3 flex-1 min-w-[220px]">
-                  <span class="text-slate-300 whitespace-nowrap">EXPLODE AXIS:</span>
-                  <input id="explode-slider" type="range" min="0" max="100" value="0" oninput="onExplodeSlider(this.value)" class="w-full accent-sky-400 cursor-pointer h-1.5 bg-slate-800 rounded-lg" />
-                  <span id="explode-pct" class="text-sky-400 w-10 text-right">0%</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span>STUDIO RIG:</span>
-                  <button onclick="setLightingPreset('cyber')" class="px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 border border-sky-500/30 hover:bg-sky-500/30">Studio Rim</button>
-                  <button onclick="setLightingPreset('warm')" class="px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 border border-amber-500/30 hover:bg-amber-500/25">Luxury Gold</button>
-                  <button onclick="setLightingPreset('emerald')" class="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/25">Lab Clean</button>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- 6 HIGH-IMPACT CGI CASE STUDIES / SHOWREEL GRID -->
-  <section id="work" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+  <main class="container">
+    <!-- Hero Section -->
+    <section class="hero">
       <div>
-        <div class="text-xs font-mono uppercase tracking-widest text-sky-400 mb-2">SELECTED COMMERCIAL DELIVERABLES</div>
-        <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">6 High-Impact CGI Case Studies</h2>
-        <p class="text-slate-400 text-sm sm:text-base mt-2 max-w-2xl">
-          Every project is built from CAD STEP files, technical blueprints, or hand sketches into subdivision-ready 3D assets for 4K e-commerce PDPs, Amazon A+ modules, and paid social video hooks.
+        <div class="pill">&#9679; Available for Freelance 3D Product Projects &amp; Retainers</div>
+        <h1>Photorealistic <span>3D Product Modeling</span> &amp; CGI Commercial Animation</h1>
+        <p>
+          Hi, I'm <strong>Mehedi</strong>. I help funded hardware startups, fragrance &amp; skincare brands, beverage makers, and design studios turn physical products into scroll-stopping 4K 3D animations and studio renders.
         </p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#projects">&#127916; Explore Real Client Work</a>
+          <a class="btn" href="https://www.behance.net/meheditwcm" target="_blank" rel="noopener">&#127912; Behance (@meheditwcm)</a>
+          <a class="btn" href="https://www.linkedin.com/in/meheditwcm/" target="_blank" rel="noopener">&#128188; LinkedIn Profile</a>
+          <a class="btn btn-emerald" href="mailto:meheditwcm@gmail.com?subject=Free%2048-Hour%203D%20Render%20Test%20Request">&#9993; meheditwcm@gmail.com</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="stat-num">19+</div>
+            <div class="stat-label">Real 3D Commercial Animations</div>
+          </div>
+          <div>
+            <div class="stat-num">45+</div>
+            <div class="stat-label">4K Client Product Renders</div>
+          </div>
+          <div>
+            <div class="stat-num">48h</div>
+            <div class="stat-label">Turnaround on Test Renders</div>
+          </div>
+        </div>
       </div>
 
-      <!-- Category Filter Tabs -->
-      <div class="flex flex-wrap gap-1.5" id="filter-tabs">
-        <button onclick="filterCaseStudies('all', this)" class="filter-tab active-mode-btn text-xs font-mono px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 text-slate-300 transition">All Work (6)</button>
-        <button onclick="filterCaseStudies('tech', this)" class="filter-tab text-xs font-mono px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 hover:border-sky-400/40 text-slate-300 transition">Tech &amp; Hardware</button>
-        <button onclick="filterCaseStudies('watches', this)" class="filter-tab text-xs font-mono px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 hover:border-sky-400/40 text-slate-300 transition">Luxury Watches &amp; Eyewear</button>
-        <button onclick="filterCaseStudies('skincare', this)" class="filter-tab text-xs font-mono px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 hover:border-sky-400/40 text-slate-300 transition">Skincare &amp; Fragrance</button>
-        <button onclick="filterCaseStudies('beverage', this)" class="filter-tab text-xs font-mono px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 hover:border-sky-400/40 text-slate-300 transition">Beverage &amp; LiquidFX</button>
-        <button onclick="filterCaseStudies('furniture', this)" class="filter-tab text-xs font-mono px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 hover:border-sky-400/40 text-slate-300 transition">Furniture &amp; Industrial</button>
+      <!-- Real Client Video Showreel Player -->
+      <div class="hero-stage">
+        <div class="stage-top">
+          <span class="stage-title" id="heroVideoLabel">&#127916; Sue Phillips NYC — 5 Fragrances 3D CGI Commercial</span>
+          <div class="reel-tabs">
+            <button class="reel-tab active" onclick="setHeroReel('assets/videos/sue_phillips_5_fragrances.mp4', 'Sue Phillips NYC — 5 Fragrances 3D CGI Commercial', this)">Sue Phillips (5 Scents)</button>
+            <button class="reel-tab" onclick="setHeroReel('assets/videos/bardot_perfume_reveal.mp4', 'Bardot Luxury Perfume — 3D Bottle Reveal', this)">Bardot Perfume</button>
+            <button class="reel-tab" onclick="setHeroReel('assets/videos/christianosam_watch_video.mp4', 'Christianosam — Luxury 3D Watch Commercial', this)">Luxury Watch</button>
+            <button class="reel-tab" onclick="setHeroReel('assets/videos/chocolate_drink_anim.mp4', 'Chocolate Drink — 3D Beverage Animation', this)">Beverage CGI</button>
+            <button class="reel-tab" onclick="setHeroReel('assets/videos/car_animation_full.mp4', '3D Automotive Full Commercial Animation', this)">Automotive 3D</button>
+            <button class="reel-tab" onclick="setHeroReel('assets/videos/ripaidan_marker_anim.mp4', 'Ripaidan — 3D Hardware Marker Animation', this)">Hardware Marker</button>
+          </div>
+        </div>
+        <div class="hero-video-wrap">
+          <video id="heroVideoPlayer" src="assets/videos/sue_phillips_5_fragrances.mp4" controls autoplay muted loop playsinline></video>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Case Studies Grid (Rendered Dynamically so Custom Uploads can also append) -->
-    <div id="case-studies-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7"></div>
-  </section>
+    <!-- 1. Curated Client Case Studies (Videos + Multi-Angle Renders) -->
+    <section class="section" id="projects">
+      <div class="section-head">
+        <div>
+          <h2>Real Client 3D Projects &amp; Deliveries</h2>
+          <p>Click any thumbnail inside a project card to switch between its 3D animation videos and multi-angle 4K studio renders.</p>
+        </div>
+      </div>
 
-  <!-- INTERACTIVE BEFORE (CAD/WIREFRAME) VS AFTER (4K CGI RENDER) COMPARISON -->
-  <section id="before-after" class="py-20 bg-studio-900/60 border-y border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-        <div class="lg:col-span-5 space-y-5">
-          <div class="text-xs font-mono uppercase tracking-widest text-emerald-400">PIPELINE TRANSPARENCY</div>
-          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">From Raw CAD or Smartphone Sketch to 4K Commercial CGI</h2>
-          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Most CAD exports (STEP/IGES) have triangulated, pinched meshes that break under studio reflections. I retopologize critical bevels into clean <strong class="text-white">Catmull-Clark quad geometry</strong>, unwrap non-overlapping UDIMs, and author physically accurate shaders.
+      <div class="filters" id="categoryFilters">
+        <button class="filter-btn active" onclick="filterProjects('ALL', this)">All Projects (9)</button>
+        <button class="filter-btn" onclick="filterProjects('Fragrance & Perfume', this)">Fragrance &amp; Perfume</button>
+        <button class="filter-btn" onclick="filterProjects('Skincare & Cosmetics', this)">Skincare &amp; Oral Care</button>
+        <button class="filter-btn" onclick="filterProjects('Watches & Hardware', this)">Watches &amp; Hardware</button>
+        <button class="filter-btn" onclick="filterProjects('Beverage & Packaging', this)">Beverage &amp; Packaging</button>
+        <button class="filter-btn" onclick="filterProjects('Automotive & Aviation', this)">Automotive &amp; Aviation</button>
+      </div>
+
+      <div class="projects-grid" id="projectsGrid"></div>
+    </section>
+
+    <!-- 2. Full 3D Product Animation Video Vault (All 19 Real MP4 Animations) -->
+    <section class="section" id="animations">
+      <div class="section-head">
+        <div>
+          <h2>3D Product Animation Showreel Vault (19 Real Client Videos)</h2>
+          <p>From luxury fragrance commercials (Sue Phillips NYC, Bardot, Pink Perfume) to macro watch animations, beverage pours, and automotive CGI.</p>
+        </div>
+      </div>
+      <div class="video-grid" id="allVideosGrid"></div>
+    </section>
+
+    <!-- 3. Real Interactive 3D Models (.GLB files built by Mehedi in Blender) -->
+    <section class="section" id="real-3d-models">
+      <div class="section-head">
+        <div>
+          <h2>Inspect My Real 3D Product Models (.GLB) in 360&deg;</h2>
+          <p>Rotate, zoom, and inspect actual client 3D models exported directly from my Blender production files.</p>
+        </div>
+        <div class="reel-tabs" id="glbButtons"></div>
+      </div>
+      <div class="glb-box">
+        <model-viewer
+          id="realGlbViewer"
+          src="assets/models/bardot_perfume.glb"
+          camera-controls
+          auto-rotate
+          shadow-intensity="1.2"
+          exposure="1.1"
+          ar
+        ></model-viewer>
+      </div>
+    </section>
+
+    <!-- 4. Full 4K Studio Renders Gallery (All 45+ Real Renders) -->
+    <section class="section" id="renders">
+      <div class="section-head">
+        <div>
+          <h2>4K Photorealistic Product Render Gallery (45+ Client Renders)</h2>
+          <p>Click any render to inspect full-screen lighting, glass caustics, label typography, and surface textures.</p>
+        </div>
+      </div>
+      <div class="img-grid" id="allImagesGrid"></div>
+    </section>
+
+    <!-- 5. Direct Contact & Free 48-Hour 3D Test CTA -->
+    <section class="section" id="contact">
+      <div style="background:linear-gradient(135deg,#131829 0%,#1e1b4b 100%);border:1px solid #312e81;border-radius:20px;padding:40px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:24px;">
+        <div style="max-width:680px;">
+          <div class="pill">&#127919; Zero-Risk Trial for Funded Brands &amp; Design Studios</div>
+          <h2 style="font-size:30px;font-weight:800;margin-bottom:10px;">Want a Free 48-Hour 3D Render Test of Your Product?</h2>
+          <p style="color:#cbd5e1;font-size:15.5px;">
+            Send me a photo, CAD file, or dieline of your product. I'll build a complimentary 4K studio render or 3-shot animation concept so you can evaluate the quality before committing.
           </p>
-
-          <div class="space-y-3 pt-2">
-            <div class="glass-panel p-3.5 rounded-xl flex items-start gap-3">
-              <span class="text-sky-400 font-mono font-bold text-sm">01</span>
-              <div>
-                <h4 class="text-sm font-semibold text-white">STEP / CAD Retopology &amp; Sub-D Modeling</h4>
-                <p class="text-xs text-slate-400 mt-0.5">Zero shading artifacts on curved CNC aluminum, watch lugs, or glass threading.</p>
-              </div>
-            </div>
-            <div class="glass-panel p-3.5 rounded-xl flex items-start gap-3">
-              <span class="text-sky-400 font-mono font-bold text-sm">02</span>
-              <div>
-                <h4 class="text-sm font-semibold text-white">Macro PBR LookDev &amp; Caustics</h4>
-                <p class="text-xs text-slate-400 mt-0.5">Micro-scratches, brushed metal anisotropy, subsurface serum dispersion, and realistic water droplets.</p>
-              </div>
-            </div>
-            <div class="glass-panel p-3.5 rounded-xl flex items-start gap-3">
-              <span class="text-sky-400 font-mono font-bold text-sm">03</span>
-              <div>
-                <h4 class="text-sm font-semibold text-white">Multi-Aspect Deliverable Pack</h4>
-                <p class="text-xs text-slate-400 mt-0.5">One master 3D scene outputs 9:16 TikTok/Reels hooks, 16:9 launch trailers, and 4K transparent PNGs across 20+ colorways.</p>
-              </div>
-            </div>
-          </div>
         </div>
-
-        <!-- Interactive Before/After Canvas Slider (7 cols) -->
-        <div class="lg:col-span-7">
-          <div class="glass-panel p-4 rounded-2xl border border-white/15">
-            <div class="flex items-center justify-between text-xs font-mono text-slate-300 mb-3">
-              <span class="px-2.5 py-1 rounded bg-sky-500/15 text-sky-300 border border-sky-500/30">LEFT: CLEAN QUAD TOPOLOGY / CLAY PASS</span>
-              <span class="text-slate-400">↔ Drag Slider to Compare</span>
-              <span class="px-2.5 py-1 rounded bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">RIGHT: 4K OCTANE / REDSHIFT FINAL</span>
-            </div>
-
-            <div class="relative w-full h-[360px] sm:h-[400px] rounded-xl overflow-hidden select-none border border-white/10" id="ba-container">
-              <!-- Canvas for Final Render (Full width background) -->
-              <canvas id="ba-after-canvas" width="800" height="450" class="w-full h-full object-cover block"></canvas>
-
-              <!-- Clipped Overlay for Wireframe/Clay Before (Left side) -->
-              <div id="ba-before-clip" class="absolute inset-y-0 left-0 overflow-hidden" style="width: 50%;">
-                <canvas id="ba-before-canvas" width="800" height="450" class="h-full object-cover block"></canvas>
-              </div>
-
-              <!-- Divider Line -->
-              <div id="ba-handle" class="absolute inset-y-0 w-0.5 bg-sky-400 shadow-[0_0_15px_#38bdf8] pointer-events-none" style="left: 50%;">
-                <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-sky-400 text-slate-950 font-bold flex items-center justify-center shadow-lg">
-                  ⇄
-                </div>
-              </div>
-
-              <!-- Invisible Range Input for Smooth Touch + Mouse Dragging -->
-              <input type="range" min="5" max="95" value="50" oninput="updateBeforeAfter(this.value)" class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20" aria-label="Compare Wireframe Before vs Final 4K CGI Render After" />
-            </div>
-          </div>
+        <div style="display:flex;flex-direction:column;gap:12px;min-width:260px;">
+          <a class="btn btn-primary" style="justify-content:center;padding:14px 22px;font-size:15px;" href="mailto:meheditwcm@gmail.com?subject=3D%20Product%20Modeling%20%26%20Animation%20Inquiry">
+            &#9993; Email: meheditwcm@gmail.com
+          </a>
+          <a class="btn btn-emerald" style="justify-content:center;" href="https://www.behance.net/meheditwcm" target="_blank" rel="noopener">
+            &#127912; Behance: behance.net/meheditwcm
+          </a>
+          <a class="btn" style="justify-content:center;" href="https://www.linkedin.com/in/meheditwcm/" target="_blank" rel="noopener">
+            &#128188; LinkedIn: linkedin.com/in/meheditwcm
+          </a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- WHY BRANDS & STUDIOS HIRE ME (ROI & PIPELINE FIT) -->
-  <section id="roi" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center max-w-3xl mx-auto mb-14">
-      <div class="text-xs font-mono uppercase tracking-widest text-sky-400 mb-2">BUILT FOR BOTH SIDES OF COMMERCIAL 3D</div>
-      <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">Why DTC Brands &amp; 3D Studios Partner With Me</h2>
-      <p class="text-slate-400 text-sm sm:text-base mt-2">
-        Whether you need a turnkey product launch video directly from your factory CAD file or white-label modeling support inside an agency pipeline.
-      </p>
-    </div>
+  <!-- Lightbox Modal -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <div class="lightbox-content" id="lightboxInner"></div>
+  </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <!-- Track 1: For DTC Brands -->
-      <div class="glass-panel rounded-2xl p-8 border border-sky-500/25 glow-border relative overflow-hidden">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-sky-500/15 border border-sky-500/30 text-sky-300 text-xs font-mono mb-4">
-          <span>FOR DTC FOUNDERS, CREATIVE DIRECTORS &amp; HEADS OF BRAND</span>
-        </div>
-        <h3 class="font-display text-2xl font-bold text-white mb-3">
-          Replace $15K Physical Reshoots with Reusable 3D Master Assets
-        </h3>
-        <p class="text-slate-300 text-sm leading-relaxed mb-6">
-          Stop waiting 6 weeks for physical production samples to arrive before shooting launch creative. Launch pre-orders early and test ad hooks with photoreal CGI.
-        </p>
-
-        <ul class="space-y-3.5 text-sm text-slate-200 mb-7">
-          <li class="flex items-start gap-3">
-            <span class="text-sky-400 font-bold">✓</span>
-            <span><strong>Pre-Inventory Launch Visuals:</strong> Sell out your drop using 4K renders and 15s CGI videos built while your factory is still tooling.</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-sky-400 font-bold">✓</span>
-            <span><strong>Impossible Camera Moves:</strong> Exploded internal PCB/switch views, macro watch movement cutaways, and zero-gravity condensation splashes.</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-sky-400 font-bold">✓</span>
-            <span><strong>Infinite Colorway &amp; Label Swaps:</strong> Launching 8 new flavors or anodized finishes? Render every SKU in 24 hours without rebooking a studio.</span>
-          </li>
-        </ul>
-
-        <div class="bg-studio-950/80 rounded-xl p-4 border border-white/10 flex items-center justify-between">
-          <div>
-            <div class="text-xs font-mono text-slate-400">TYPICAL DTC LAUNCH SPRINT</div>
-            <div class="text-sm font-semibold text-white">1 Master 3D Model + 15s CGI Ad + 6 Studio 4K Renders</div>
-          </div>
-          <a href="#free-test" class="text-xs font-mono text-sky-400 hover:text-sky-300 whitespace-nowrap font-semibold">Scope Your SKU →</a>
-        </div>
-      </div>
-
-      <!-- Track 2: For 3D, VFX & E-Com Agencies -->
-      <div class="glass-panel rounded-2xl p-8 border border-emerald-500/25 glow-border relative overflow-hidden">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-mono mb-4">
-          <span>FOR 3D ANIMATION STUDIOS, EXECUTIVE PRODUCERS &amp; AGENCIES</span>
-        </div>
-        <h3 class="font-display text-2xl font-bold text-white mb-3">
-          Drop-In Senior 3D Modeling &amp; LookDev Overflow Support
-        </h3>
-        <p class="text-slate-300 text-sm leading-relaxed mb-6">
-          When client sprint deadlines stack up, your Art Directors shouldn’t have to fix messy topology, flipped normals, or unorganized shader trees.
-        </p>
-
-        <ul class="space-y-3.5 text-sm text-slate-200 mb-7">
-          <li class="flex items-start gap-3">
-            <span class="text-emerald-400 font-bold">✓</span>
-            <span><strong>Strict Quad Sub-D Topology:</strong> Clean edge flow, uniform holding loops, and deformation-ready meshes that hold up at 4K macro focal lengths.</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-emerald-400 font-bold">✓</span>
-            <span><strong>Studio-Standard Scene Hygiene:</strong> Logical outliner naming conventions, clean non-overlapping UVs, real-world scale (cm/mm), and baked PBR maps.</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-emerald-400 font-bold">✓</span>
-            <span><strong>White-Label &amp; NDA Ready:</strong> Seamless handoff in `.blend`, `.c4d`, `.fbx`, `.obj`, `.usd`, or `.abc` with daily Slack/Frame.io WIP check-ins.</span>
-          </li>
-        </ul>
-
-        <div class="bg-studio-950/80 rounded-xl p-4 border border-white/10 flex items-center justify-between">
-          <div>
-            <div class="text-xs font-mono text-slate-400">FLEXIBLE ENGAGEMENT</div>
-            <div class="text-sm font-semibold text-white">Per-Asset Fixed Bid, Day-Rate Sprints, or Monthly Retainer</div>
-          </div>
-          <a href="#free-test" class="text-xs font-mono text-emerald-400 hover:text-emerald-300 whitespace-nowrap font-semibold">Request Test Mesh →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FREE 48-HOUR 3D LIGHTING / MESH TEST BOOKING & CONTACT SECTION -->
-  <section id="free-test" class="py-20 bg-gradient-to-b from-studio-900/80 to-studio-950 border-t border-white/10">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="glass-panel rounded-3xl p-8 sm:p-12 border border-sky-400/30 shadow-2xl shadow-sky-950/50">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
-
-          <!-- Left Info & Direct 1-Click Channels (5 cols) -->
-          <div class="lg:col-span-5 space-y-6">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-mono">
-              <span>ZERO-RISK PROOF OF QUALITY</span>
-            </div>
-            <h2 class="font-display text-3xl sm:text-4xl font-bold text-white leading-tight">
-              Claim a Free 48-Hour 3D Lighting Pass or Topology Test.
-            </h2>
-            <p class="text-slate-300 text-sm leading-relaxed">
-              Send over a product link, reference photo, or CAD file of one hero SKU. I’ll deliver a <strong class="text-white">custom 3D clay/lighting frame + a 3-point CGI motion storyboard</strong> tailored to your brand within 48 hours—no strings attached.
-            </p>
-
-            <!-- Direct 1-Click Contact Cards -->
-            <div class="space-y-3 pt-2">
-              <a href="mailto:meheditwcm@gmail.com?subject=3D%20Product%20Modeling%20%26%20Animation%20Inquiry" class="flex items-center justify-between p-4 rounded-xl bg-white/5 hover:bg-sky-500/15 border border-white/10 hover:border-sky-400/50 transition group">
-                <div class="flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center font-mono font-bold">✉️</div>
-                  <div>
-                    <div class="text-xs font-mono text-slate-400">DIRECT EMAIL</div>
-                    <div class="text-sm font-semibold text-white group-hover:text-sky-300">meheditwcm@gmail.com</div>
-                  </div>
-                </div>
-                <span class="text-xs font-mono text-sky-400">Email Now →</span>
-              </a>
-
-              <a href="https://www.linkedin.com/in/meheditwcm/" target="_blank" rel="noopener" class="flex items-center justify-between p-4 rounded-xl bg-white/5 hover:bg-sky-500/15 border border-white/10 hover:border-sky-400/50 transition group">
-                <div class="flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center font-mono font-bold">in</div>
-                  <div>
-                    <div class="text-xs font-mono text-slate-400">LINKEDIN DIRECT MESSAGE</div>
-                    <div class="text-sm font-semibold text-white group-hover:text-sky-300">linkedin.com/in/meheditwcm</div>
-                  </div>
-                </div>
-                <span class="text-xs font-mono text-sky-400">Connect →</span>
-              </a>
-
-              <a href="https://www.behance.net/meheditwcm" target="_blank" rel="noopener" class="flex items-center justify-between p-4 rounded-xl bg-white/5 hover:bg-sky-500/15 border border-white/10 hover:border-sky-400/50 transition group">
-                <div class="flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center font-display font-bold">Bē</div>
-                  <div>
-                    <div class="text-xs font-mono text-slate-400">BEHANCE 3D SHOWCASE</div>
-                    <div class="text-sm font-semibold text-white group-hover:text-sky-300">behance.net/meheditwcm</div>
-                  </div>
-                </div>
-                <span class="text-xs font-mono text-sky-400">View Renders →</span>
-              </a>
-            </div>
-
-            <div class="text-xs font-mono text-slate-400 pt-2">
-              ⚡ Average response time: <span class="text-emerald-400">Under 4 hours</span> (UTC+6 / Global overlap with US &amp; EU studio hours)
-            </div>
-          </div>
-
-          <!-- Right Interactive Brief Builder Form (7 cols) -->
-          <div class="lg:col-span-7">
-            <form id="quote-form" onsubmit="handleQuoteSubmit(event)" class="bg-studio-950/90 p-6 sm:p-8 rounded-2xl border border-white/10 space-y-4">
-              <div class="flex items-center justify-between border-b border-white/10 pb-3">
-                <span class="font-display font-bold text-white text-lg">Request Free 3D Concept / Project Quote</span>
-                <span class="text-xs font-mono text-sky-400">Instant Pre-Filled Brief</span>
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label class="block text-xs font-mono text-slate-300 mb-1.5">YOUR NAME *</label>
-                  <input type="text" id="form-name" required placeholder="Alex Rivera" class="w-full bg-studio-900 border border-white/15 focus:border-sky-400 rounded-lg px-3.5 py-2.5 text-sm text-white outline-none" />
-                </div>
-                <div>
-                  <label class="block text-xs font-mono text-slate-300 mb-1.5">COMPANY / STUDIO *</label>
-                  <input type="text" id="form-company" required placeholder="Chrono / Studio XYZ" class="w-full bg-studio-900 border border-white/15 focus:border-sky-400 rounded-lg px-3.5 py-2.5 text-sm text-white outline-none" />
-                </div>
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label class="block text-xs font-mono text-slate-300 mb-1.5">PROJECT TYPE *</label>
-                  <select id="form-type" class="w-full bg-studio-900 border border-white/15 focus:border-sky-400 rounded-lg px-3.5 py-2.5 text-sm text-white outline-none">
-                    <option value="Free 48-Hr 3D Lighting / Clay Render Test">Free 48-Hr 3D Lighting / Clay Test</option>
-                    <option value="3D Product Launch Animation (15s-30s CGI)">3D Product Launch Animation (15s-30s CGI)</option>
-                    <option value="Hard-Surface 3D Modeling & Photoreal PDP Renders">Hard-Surface 3D Modeling &amp; 4K PDP Renders</option>
-                    <option value="Exploded-View Hardware / Technical Animation">Exploded-View Hardware Animation</option>
-                    <option value="3D Studio Overflow / Monthly Retainer">3D Studio Overflow / Monthly Retainer</option>
-                  </select>
-                </div>
-                <div>
-                  <label class="block text-xs font-mono text-slate-300 mb-1.5">PRODUCT URL OR CAD STATUS</label>
-                  <input type="text" id="form-url" placeholder="https://yourbrand.com/product (or STEP file ready)" class="w-full bg-studio-900 border border-white/15 focus:border-sky-400 rounded-lg px-3.5 py-2.5 text-sm text-white outline-none" />
-                </div>
-              </div>
-
-              <div>
-                <label class="block text-xs font-mono text-slate-300 mb-1.5">PROJECT GOALS / DELIVERABLES NEEDED *</label>
-                <textarea id="form-notes" rows="3" required placeholder="Tell me about your SKU, target launch date, or desired 3D shots (e.g. exploded view, condensation splash, 6 colorways)..." class="w-full bg-studio-900 border border-white/15 focus:border-sky-400 rounded-lg px-3.5 py-2.5 text-sm text-white outline-none"></textarea>
-              </div>
-
-              <button type="submit" class="w-full bg-gradient-to-r from-sky-400 via-cyan-300 to-emerald-300 hover:opacity-95 text-slate-950 font-display font-bold py-3.5 rounded-xl shadow-lg shadow-sky-500/20 transition flex items-center justify-center gap-2">
-                <span>Generate &amp; Send 3D Project Brief to meheditwcm@gmail.com</span>
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-              </button>
-
-              <p id="form-feedback" class="hidden text-xs font-mono text-emerald-400 text-center pt-1">
-                ✓ Opening your email client addressed to meheditwcm@gmail.com (and copied brief to clipboard)!
-              </p>
-            </form>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="border-t border-white/10 py-10 bg-studio-950 text-xs text-slate-400">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-3">
-        <span class="font-display font-bold text-white text-sm">MEHEDI — 3D PRODUCT MODELING &amp; CGI ANIMATION</span>
-        <span class="text-slate-600">|</span>
-        <a href="mailto:meheditwcm@gmail.com" class="hover:text-sky-400 transition">meheditwcm@gmail.com</a>
-      </div>
-      <div class="flex flex-wrap items-center gap-5 font-mono">
-        <a href="https://www.behance.net/meheditwcm" target="_blank" rel="noopener" class="hover:text-sky-400 transition">Behance (behance.net/meheditwcm)</a>
-        <a href="https://www.linkedin.com/in/meheditwcm/" target="_blank" rel="noopener" class="hover:text-sky-400 transition">LinkedIn (/in/meheditwcm)</a>
-        <button onclick="toggleCustomizerDrawer()" class="text-amber-300 hover:text-amber-200">⚙️ Portfolio Customizer</button>
-        <a href="#inspector" class="hover:text-white transition">↑ Back to 3D Stage</a>
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+      <div>&copy; 2026 Mehedi — 3D Product Modeling &amp; CGI Animation Specialist. All featured renders and animations are 100% original client deliveries.</div>
+      <div style="display:flex;gap:18px;">
+        <a href="https://www.behance.net/meheditwcm" target="_blank" rel="noopener">Behance</a>
+        <a href="https://www.linkedin.com/in/meheditwcm/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:meheditwcm@gmail.com">meheditwcm@gmail.com</a>
       </div>
     </div>
   </footer>
 
-  <!-- CASE STUDY DETAIL MODAL -->
-  <div id="case-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-md p-4">
-    <div class="glass-panel max-w-2xl w-full rounded-2xl border border-white/20 overflow-hidden shadow-2xl">
-      <div class="flex items-center justify-between px-6 py-4 bg-studio-900 border-b border-white/10">
-        <div>
-          <span id="modal-category" class="text-[11px] font-mono text-sky-400 uppercase"></span>
-          <h3 id="modal-title" class="font-display text-xl font-bold text-white"></h3>
-        </div>
-        <button onclick="closeCaseModal()" class="text-slate-400 hover:text-white text-xl font-mono px-2">✕</button>
-      </div>
-      <div class="p-6 space-y-4 text-sm text-slate-300 max-h-[80vh] overflow-y-auto">
-        <div class="grid grid-cols-3 gap-3 bg-studio-950 p-3.5 rounded-xl border border-white/10 font-mono text-xs">
-          <div><span class="text-slate-400 block">TOPOLOGY</span><span id="modal-poly" class="text-emerald-400 font-semibold"></span></div>
-          <div><span class="text-slate-400 block">PIPELINE</span><span id="modal-tools" class="text-sky-300 font-semibold"></span></div>
-          <div><span class="text-slate-400 block">TURNAROUND</span><span id="modal-time" class="text-white font-semibold"></span></div>
-        </div>
-        <div>
-          <h4 class="text-xs font-mono uppercase text-slate-400 mb-1">BEFORE (CLIENT INPUT) → AFTER (4K CGI DELIVERABLES)</h4>
-          <p id="modal-story" class="leading-relaxed text-slate-200"></p>
-        </div>
-        <div>
-          <h4 class="text-xs font-mono uppercase text-slate-400 mb-1.5">DELIVERABLES INCLUDED</h4>
-          <ul id="modal-deliverables" class="list-disc list-inside space-y-1 text-slate-300 text-xs sm:text-sm"></ul>
-        </div>
-        <div class="pt-3 flex flex-wrap items-center justify-between gap-3 border-t border-white/10">
-          <a href="https://www.behance.net/meheditwcm" target="_blank" rel="noopener" class="text-xs font-mono text-sky-400 hover:text-sky-300 underline underline-offset-4">View Full Case Study on Behance (behance.net/meheditwcm) ↗</a>
-          <div class="flex items-center gap-2">
-            <button onclick="closeCaseModal()" class="px-4 py-2 rounded-lg border border-white/15 text-xs font-mono text-slate-300 hover:text-white">Close</button>
-            <a href="#free-test" onclick="closeCaseModal()" class="px-5 py-2 rounded-lg bg-sky-400 text-slate-950 font-semibold text-xs font-mono">Request Similar 3D Deliverable →</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- EASY PORTFOLIO MANAGER / CUSTOMIZER DRAWER -->
-  <div id="customizer-drawer" class="fixed inset-y-0 right-0 z-50 w-full max-w-md glass-panel border-l border-white/15 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
-    <div class="p-5 bg-studio-900 border-b border-white/10 flex items-center justify-between">
-      <div>
-        <span class="text-[11px] font-mono text-amber-400 uppercase">PORTFOLIO MANAGER FOR MEHEDI</span>
-        <h3 class="font-display text-lg font-bold text-white">Add Your Own 3D Renders / MP4s</h3>
-      </div>
-      <button onclick="toggleCustomizerDrawer()" class="text-slate-400 hover:text-white text-lg font-mono px-2">✕</button>
-    </div>
-
-    <div class="p-5 overflow-y-auto flex-1 space-y-5 text-xs text-slate-300">
-      <div class="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-200 leading-relaxed">
-        <strong>Instant Live Preview + Permanent Folder Support:</strong> You can add a new 3D project card right here in your browser (saved to LocalStorage) OR drop any `.png`, `.jpg`, or `.mp4` render into <code class="text-white">C:\Users\User\.gemini\antigravity\scratch\portfolio\renders\</code>.
-      </div>
-
-      <form onsubmit="addCustomProjectCard(event)" class="space-y-3 bg-studio-950 p-4 rounded-xl border border-white/10">
-        <div class="font-mono text-sky-400 font-semibold uppercase">+ Add Custom Project Card to Grid</div>
-        <div>
-          <label class="block text-[11px] font-mono text-slate-400 mb-1">PROJECT TITLE *</label>
-          <input type="text" id="cust-title" required placeholder="e.g. Keychron Q1 Pro — Exploded CGI Launch" class="w-full bg-studio-900 border border-white/15 rounded px-3 py-2 text-white outline-none" />
-        </div>
-        <div class="grid grid-cols-2 gap-2">
-          <div>
-            <label class="block text-[11px] font-mono text-slate-400 mb-1">CATEGORY *</label>
-            <select id="cust-cat" class="w-full bg-studio-900 border border-white/15 rounded px-2.5 py-2 text-white outline-none">
-              <option value="tech">Tech &amp; Hardware</option>
-              <option value="watches">Luxury Watches &amp; Eyewear</option>
-              <option value="skincare">Skincare &amp; Fragrance</option>
-              <option value="beverage">Beverage &amp; LiquidFX</option>
-              <option value="furniture">Furniture &amp; Industrial</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-[11px] font-mono text-slate-400 mb-1">POLYCOUNT / TOPOLOGY</label>
-            <input type="text" id="cust-poly" placeholder="68k Quads (Sub-D)" class="w-full bg-studio-900 border border-white/15 rounded px-3 py-2 text-white outline-none" />
-          </div>
-        </div>
-        <div>
-          <label class="block text-[11px] font-mono text-slate-400 mb-1">RENDER tools (COMMA SEPARATED)</label>
-          <input type="text" id="cust-tools" placeholder="Blender, Octane, Substance 3D" class="w-full bg-studio-900 border border-white/15 rounded px-3 py-2 text-white outline-none" />
-        </div>
-        <div>
-          <label class="block text-[11px] font-mono text-slate-400 mb-1">IMAGE / RENDER URL OR LOCAL PATH</label>
-          <input type="text" id="cust-img" placeholder="renders/my_render.png or https://..." class="w-full bg-studio-900 border border-white/15 rounded px-3 py-2 text-white outline-none" />
-        </div>
-        <div>
-          <label class="block text-[11px] font-mono text-slate-400 mb-1">BEFORE → AFTER DELIVERABLE SUMMARY *</label>
-          <textarea id="cust-desc" rows="2" required placeholder="Modeled from reference photos into 4K exploded product animation..." class="w-full bg-studio-900 border border-white/15 rounded px-3 py-2 text-white outline-none"></textarea>
-        </div>
-        <button type="submit" class="w-full py-2.5 rounded-lg bg-sky-400 text-slate-950 font-mono font-bold hover:bg-sky-300 transition">
-          + Add Project to Portfolio Grid
-        </button>
-      </form>
-
-      <div class="flex items-center justify-between pt-2">
-        <button onclick="resetCustomProjects()" class="text-[11px] font-mono text-rose-400 hover:underline">Reset Custom Cards to Default 6</button>
-        <button onclick="toggleCustomizerDrawer()" class="text-[11px] font-mono text-slate-400 hover:text-white">Done</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- MAIN JAVASCRIPT: THREE.JS LIVE 3D PRODUCT STAGE + PROCEDURAL RENDERS + UI LOGIC -->
   <script>
-    /*************************************************************************
-     * 1. THREE.JS INTERACTIVE 3D WEBGL PRODUCT STAGE (3 Procedural Products)
-     *************************************************************************/
-    let scene, camera, renderer, controls;
-    let currentProductGroup = null;
-    let explodableParts = [];
-    let allProductMaterials = [];
-    let currentProductKey = 'watch';
-    let currentRenderMode = 'studio'; // 'studio' | 'wireframe'
-    let targetExplode = 0; // 0 to 1
-    let currentExplode = 0;
-    let autoRotate = true;
-    let keyLight, rimLight, fillLight;
+    const PROJECTS = [{"id":"sue-phillips-scents","title":"Sue Phillips House of Fragrance — 5 Scents 3D CGI Campaign","client":"Sue Phillips Fragrance (NYC)","category":"Fragrance & Perfume","tools":["Blender 3D","Cycles / Octane","Botanical & Liquid FX","After Effects"],"description":"Complete 3D product animation & photorealistic rendering campaign for Sue Phillips House of Fragrance featuring 5 signature scents (Floral, Fresh, Fruity, Spicy, and Woodsy) plus the 5-bottle ensemble commercial.","coverImage":"assets/images/sue_phillips_floral_still.png","heroVideo":"assets/videos/sue_phillips_5_fragrances.mp4","videos":[{"url":"assets/videos/sue_phillips_5_fragrances.mp4","label":"5 Fragrances Hero Commercial"},{"url":"assets/videos/sue_phillips_all_together.mp4","label":"All Scents Ensemble Reveal"},{"url":"assets/videos/sue_phillips_floral.mp4","label":"Floral Scent 3D Animation"},{"url":"assets/videos/sue_phillips_fresh.mp4","label":"Fresh Scent 3D Animation"},{"url":"assets/videos/sue_phillips_fruity.mp4","label":"Fruity Scent 3D Animation"},{"url":"assets/videos/sue_phillips_spicy.mp4","label":"Spicy Scent 3D Animation"},{"url":"assets/videos/sue_phillips_woodsy.mp4","label":"Woodsy Scent 3D Animation"}],"images":["assets/images/sue_phillips_floral_still.png","assets/images/sue_phillips_fresh_still.png","assets/images/sue_phillips_fruity_still.png","assets/images/sue_phillips_spicy_still.png","assets/images/sue_phillips_woodsy_still.png"]},{"id":"bardot-chanel-perfume","title":"Bardot & Luxury Eau de Parfum — 3D Bottle Modeling & Motion Reveal","client":"Bardot Fragrance & Luxury Perfume Collection","category":"Fragrance & Perfume","tools":["Blender 3D","Glass Caustics","Sub-D Modeling","PBR Texturing"],"description":"Photorealistic 3D glass perfume bottle modeling, custom refractive glass and gold metallic shaders, and cinematic slow-motion product reveal commercials.","coverImage":"assets/images/chanel_perfume_1.jpg","heroVideo":"assets/videos/bardot_perfume_reveal.mp4","glbModel":"assets/models/bardot_perfume.glb","videos":[{"url":"assets/videos/bardot_perfume_reveal.mp4","label":"Bardot Perfume 3D Commercial"},{"url":"assets/videos/bardot_slow_motion.mp4","label":"Bardot Slow-Motion Macro Reveal"}],"images":["assets/images/chanel_perfume_1.jpg","assets/images/chanel_perfume_2.jpg","assets/images/bardot_cover.jpg","assets/images/bardot_render_1.jpg"]},{"id":"pink-perfume-showreel","title":"Pink Signature Fragrance — 3D CGI Animation Reel & Lighting Study","client":"Signature Fragrance Campaign","category":"Fragrance & Perfume","tools":["Blender 3D","Cycles Render","Studio Rim Lighting","Motion Graphics"],"description":"High-contrast studio lighting study and 3D motion reel highlighting realistic glass refraction, specular rim highlights, and luxury bottle proportions.","coverImage":"assets/images/pplight_2.jpg","heroVideo":"assets/videos/pink_perfume_reel.mp4","videos":[{"url":"assets/videos/pink_perfume_reel.mp4","label":"Pink Perfume 3D Showreel"},{"url":"assets/videos/pink_perfume_loop.mp4","label":"Pink Perfume Hero Motion Loop"}],"images":["assets/images/pplight_1.jpg","assets/images/pplight_2.jpg","assets/images/pplight_3.jpg","assets/images/pplight_4.jpg"]},{"id":"christianosam-luxury-watch","title":"Christianosam Timepiece — 3D Macro Watch Modeling & Commercial Video","client":"Christianosam","category":"Watches & Hardware","tools":["Blender 3D","Hard-Surface Modeling","Anisotropic Metals","Macro Animation"],"description":"Precision hard-surface 3D wristwatch modeling, brushed stainless steel & sapphire crystal shaders, dial detailing, and dramatic commercial video animation.","coverImage":"assets/images/watch_render_1.jpg","heroVideo":"assets/videos/christianosam_watch_video.mp4","videos":[{"url":"assets/videos/christianosam_watch_video.mp4","label":"Christianosam Full Watch Commercial"},{"url":"assets/videos/watch_macro_animation.mp4","label":"Luxury Watch Macro Animation"}],"images":["assets/images/watch_render_1.jpg","assets/images/watch_render_2.jpg"]},{"id":"beverage-juice-chocolate-cgi","title":"Beverage, Fruit Juice & Nutrition — 3D Bottle Animation & Packaging CGI","client":"Chocolate Drink, Apple/Mango Juice & Protein Packaging","category":"Beverage & Packaging","tools":["Blender 3D","Liquid & Condensation FX","3D Product Animation","UV Label Wrapping"],"description":"Dynamic 3D beverage commercials and photorealistic studio packaging renders for chocolate drink bottles, fresh apple & mango juice, and sports nutrition tubs.","coverImage":"assets/images/apple_juice_2.jpg","heroVideo":"assets/videos/chocolate_drink_anim.mp4","videos":[{"url":"assets/videos/chocolate_drink_anim.mp4","label":"Chocolate Drink 3D Commercial"},{"url":"assets/videos/juice_bottle_anim.mp4","label":"Fruit Juice 3D Bottle Animation"}],"images":["assets/images/apple_juice_1.jpg","assets/images/apple_juice_2.jpg","assets/images/chocolate_drink_1.jpg","assets/images/mango_drink_1.jpg","assets/images/protein_tub_1.jpg","assets/images/protein_tub_2.jpg"]},{"id":"mark-stanford-toothpaste-oralcare","title":"Mark Stanford Oral Care & Purple Toothpaste — 3D Packaging & Tube CGI","client":"Mark Stanford","category":"Skincare & Cosmetics","tools":["Blender 3D","Packaging Visualization","Custom Die-Line & UV Mapping","Studio Lighting"],"description":"Photorealistic 3D product modeling and hero e-commerce renders for Mark Stanford purple color-correcting toothpaste tubes, pumps, and retail boxes.","coverImage":"assets/images/mark_design_2.png","images":["assets/images/mark_design_1.png","assets/images/mark_design_2.png","assets/images/mark_final_1.png","assets/images/mark_final_3.png","assets/images/mark_bubblegum.jpg","assets/images/mark_toothpaste_shadow.png"],"videos":[]},{"id":"tastebynaomi-cosmetics-skincare","title":"TasteByNaomi & Skincare Collection — 3D Cosmetic Tube, Serum & Foundation CGI","client":"TasteByNaomi & Beauty Clients","category":"Skincare & Cosmetics","tools":["Blender 3D","3D Product Animation","Subsurface & Glass Shaders"],"description":"3D cosmetic product modeling, custom label mapping, and motion showcase for TasteByNaomi tubes, luxury foundation pumps, skincare creams, and serum droppers.","coverImage":"assets/images/foundation_bottle_1.jpg","heroVideo":"assets/videos/tastebynaomi_anim_1.mp4","glbModel":"assets/models/foundation_bottle.glb","videos":[{"url":"assets/videos/tastebynaomi_anim_1.mp4","label":"TasteByNaomi 3D Product Animation"},{"url":"assets/videos/tastebynaomi_anim_2.mp4","label":"TasteByNaomi 360° Motion Clip"}],"images":["assets/images/foundation_bottle_1.jpg","assets/images/skincare_cream_1.jpg","assets/images/serum_dropper_1.jpg","assets/images/tastebynaomi_render_1.jpg","assets/images/tastebynaomi_render_2.jpg","assets/images/tastebynaomi_render_3.jpg"]},{"id":"aeroplane-automotive-cgi","title":"3D Aircraft, MG Motor Automotive & Hard-Surface Animation","client":"MGH Car / Aviation & Automotive Clients","category":"Automotive & Aviation","tools":["Blender 3D","Hard-Surface Sub-D","Automotive Paint Shaders","3D Camera Rigging"],"description":"High-detail hard-surface 3D aircraft modeling, MG Motor automotive studio renders, and full 3D car animation sequences.","coverImage":"assets/images/aeroplane_render_1.jpg","heroVideo":"assets/videos/car_animation_full.mp4","videos":[{"url":"assets/videos/car_animation_full.mp4","label":"3D Automotive Full Animation"},{"url":"assets/videos/product_video_3.mp4","label":"3D Product & Vehicle Showcase"}],"images":["assets/images/aeroplane_render_1.jpg","assets/images/aeroplane_render_2.jpg","assets/images/aeroplane_render_3.jpg","assets/images/aeroplane_render_5.jpg","assets/images/mgh_car_render_2.jpg","assets/images/mgh_car_render_3.jpg","assets/images/fiverrcar.jpg"]},{"id":"ripaidan-hardware-client-deliveries","title":"Ripaidan Marker Animation, Consumer Hardware & Interior 3D Deliveries","client":"Ripaidan, Alelazza, Ankr1980, Filipjjj, EunoiyaDesign & Klol123","category":"Watches & Hardware","tools":["Blender 3D","Product Animation","Hard-Surface & ArchViz"],"description":"Client delivery 3D animations and photorealistic product renders including Ripaidan marker animation, stainless appliances, furniture, and interior visualization.","coverImage":"assets/images/alelazza_render_1.jpg","heroVideo":"assets/videos/ripaidan_marker_anim.mp4","glbModel":"assets/models/ripaidan_marker_set.glb","videos":[{"url":"assets/videos/ripaidan_marker_anim.mp4","label":"Ripaidan 3D Marker Animation"},{"url":"assets/videos/marker_motion_clip.mp4","label":"Marker Product Motion Sequence"}],"images":["assets/images/alelazza_render_1.jpg","assets/images/ankr1980_render_1.jpg","assets/images/ankr1980_new_1.jpg","assets/images/filipjjj_render_1.jpg","assets/images/eunoiyadesign_render_1.jpg","assets/images/klol123_render_6.jpg","assets/images/fridge_render_2.jpg","assets/images/joelschade_render_1.jpg","assets/images/ashleywagner_room_1.jpg","assets/images/bedroom_light_test.jpg","assets/images/sofa.jpg","assets/images/showcase.jpg"]}];
+    const GLB_MODELS = [{"file":"assets/models/bardot_perfume.glb","label":"Bardot Luxury Perfume Bottle (Real .GLB)"},{"file":"assets/models/foundation_bottle.glb","label":"Cosmetic Foundation Bottle (Real .GLB)"},{"file":"assets/models/ripaidan_marker_set.glb","label":"Ripaidan Marker Set (Real .GLB)"},{"file":"assets/models/daanvdp_product.glb","label":"Daanvdp Client Product (Real .GLB)"},{"file":"assets/models/bestof216_product.glb","label":"Bestof216 Client 3D Asset (Real .GLB)"},{"file":"assets/models/alexatass_product.glb","label":"Alexatass Client 3D Asset (Real .GLB)"}];
+    let currentFilter = 'ALL';
 
-    const productTelemetry = {
-      watch: {
-        name: 'CHRONO-01 TITANIUM TOURBILLON',
-        poly: 'Clean Sub-D Quads (42,800 Tris)',
-        shader: 'PBR Anisotropic Titanium + Sapphire Crystal'
-      },
-      serum: {
-        name: 'AURA-7 BOTANICAL ELIXIR DROPPER',
-        poly: 'Clean Sub-D Quads (28,400 Tris)',
-        shader: 'Refractive Flint Glass + Subsurface Gold Serum'
-      },
-      audio: {
-        name: 'PULSE-X ANC SPATIAL EARBUDS',
-        poly: 'Clean Sub-D Quads (54,200 Tris)',
-        shader: 'CNC Matte Aluminum + Acoustic Mesh & LED Core'
-      }
-    };
-
-    function initWebGLStage() {
-      const container = document.getElementById('webgl-canvas-container');
-      const width = container.clientWidth;
-      const height = container.clientHeight;
-
-      scene = new THREE.Scene();
-
-      camera = new THREE.PerspectiveCamera(36, width / height, 0.1, 100);
-      camera.position.set(3.4, 2.2, 4.6);
-
-      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-      renderer.setSize(width, height);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-      renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 1.25;
-      container.appendChild(renderer.domElement);
-
-      controls = new THREE.OrbitControls(camera, renderer.domElement);
-      controls.enableDamping = true;
-      controls.dampingFactor = 0.06;
-      controls.minDistance = 2.4;
-      controls.maxDistance = 9;
-      controls.target.set(0, 0, 0);
-
-      // Studio 3-Point Lighting Rig
-      const ambient = new THREE.AmbientLight(0xdbeafe, 0.7);
-      scene.add(ambient);
-
-      keyLight = new THREE.DirectionalLight(0xffffff, 2.2);
-      keyLight.position.set(5, 7, 5);
-      scene.add(keyLight);
-
-      rimLight = new THREE.PointLight(0x38bdf8, 3.2, 18);
-      rimLight.position.set(-4, 3, -4);
-      scene.add(rimLight);
-
-      fillLight = new THREE.PointLight(0x10b981, 1.8, 16);
-      fillLight.position.set(4, -3, 2);
-      scene.add(fillLight);
-
-      // Subtle Studio Floor Reflection Ring
-      const floorGeo = new THREE.RingGeometry(1.4, 1.43, 64);
-      floorGeo.rotateX(-Math.PI / 2);
-      const floorMat = new THREE.MeshBasicMaterial({ color: 0x38bdf8, side: THREE.DoubleSide, transparent: true, opacity: 0.25 });
-      const floorRing = new THREE.Mesh(floorGeo, floorMat);
-      floorRing.position.y = -1.55;
-      scene.add(floorRing);
-
-      // Load Default Product (Luxury Chronograph Watch)
-      buildProductMesh('watch');
-
-      window.addEventListener('resize', onWindowResize);
-      animateStage();
+    function setHeroReel(videoUrl, label, btn) {
+      const player = document.getElementById('heroVideoPlayer');
+      player.src = videoUrl;
+      player.play();
+      document.getElementById('heroVideoLabel').textContent = '🎬 ' + label;
+      document.querySelectorAll('.hero-stage .reel-tab').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
     }
 
-    function registerPart(mesh, explodeVec) {
-      mesh.userData.basePos = mesh.position.clone();
-      mesh.userData.explodeVec = explodeVec.clone();
-      explodableParts.push(mesh);
-      currentProductGroup.add(mesh);
+    function filterProjects(cat, btn) {
+      currentFilter = cat;
+      document.querySelectorAll('#categoryFilters .filter-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderProjects();
     }
 
-    function createMat(params) {
-      const mat = new THREE.MeshPhysicalMaterial(params);
-      allProductMaterials.push(mat);
-      return mat;
-    }
-
-    function buildProductMesh(type) {
-      if (currentProductGroup) {
-        scene.remove(currentProductGroup);
-      }
-      currentProductGroup = new THREE.Group();
-      explodableParts = [];
-      allProductMaterials = [];
-
-      const isWire = currentRenderMode === 'wireframe';
-
-      if (type === 'watch') {
-        // 1. Brushed Titanium Case Body
-        const caseMat = createMat({ color: 0x94a3b8, metalness: 0.9, roughness: 0.22, clearcoat: 0.4, wireframe: isWire });
-        const caseMesh = new THREE.Mesh(new THREE.CylinderGeometry(1.18, 1.18, 0.36, 48, 4), caseMat);
-        caseMesh.rotation.x = Math.PI / 2;
-        registerPart(caseMesh, new THREE.Vector3(0, 0, 0));
-
-        // 2. Machined Tachymeter Bezel (Gold/Bronze accent)
-        const bezelMat = createMat({ color: 0x38bdf8, metalness: 0.85, roughness: 0.18, wireframe: isWire });
-        const bezelMesh = new THREE.Mesh(new THREE.TorusGeometry(1.12, 0.11, 24, 64), bezelMat);
-        bezelMesh.position.z = 0.22;
-        registerPart(bezelMesh, new THREE.Vector3(0, 0, 0.75));
-
-        // 3. Guilloche Chronograph Dial + Subdials
-        const dialGroup = new THREE.Group();
-        const dialMat = createMat({ color: 0x0f172a, metalness: 0.65, roughness: 0.35, wireframe: isWire });
-        const dialDisk = new THREE.Mesh(new THREE.CylinderGeometry(1.02, 1.02, 0.06, 48, 2), dialMat);
-        dialDisk.rotation.x = Math.PI / 2;
-        dialGroup.add(dialDisk);
-
-        // Hands & Sub-rings
-        const handMat = createMat({ color: 0xf59e0b, metalness: 0.95, roughness: 0.15, wireframe: isWire });
-        const hourHand = new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.58, 0.03), handMat);
-        hourHand.position.set(0, 0.22, 0.06);
-        dialGroup.add(hourHand);
-
-        const minHand = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.82, 0.03), handMat);
-        minHand.rotation.z = -0.95;
-        minHand.position.set(0.26, 0.18, 0.08);
-        dialGroup.add(minHand);
-
-        dialGroup.position.z = 0.12;
-        registerPart(dialGroup, new THREE.Vector3(0, 0, 0.42));
-
-        // 4. Internal Mechanical Tourbillon Gear Core
-        const gearMat = createMat({ color: 0xfbbf24, metalness: 0.92, roughness: 0.2, wireframe: isWire });
-        const gearMesh = new THREE.Mesh(new THREE.TorusKnotGeometry(0.42, 0.07, 80, 16), gearMat);
-        gearMesh.position.z = -0.05;
-        registerPart(gearMesh, new THREE.Vector3(0, 0, -0.55));
-
-        // 5. Domed Sapphire Crystal Glass (Front)
-        const glassMat = createMat({
-          color: 0xe0f2fe,
-          metalness: 0.05,
-          roughness: 0.05,
-          transparent: true,
-          opacity: isWire ? 0.85 : 0.34,
-          clearcoat: 1.0,
-          wireframe: isWire
-        });
-        const glassMesh = new THREE.Mesh(new THREE.CylinderGeometry(1.06, 1.06, 0.08, 48, 2), glassMat);
-        glassMesh.rotation.x = Math.PI / 2;
-        glassMesh.position.z = 0.31;
-        registerPart(glassMesh, new THREE.Vector3(0, 0, 1.25));
-
-        // 6. Exhibition Caseback Ring (Rear)
-        const backMesh = new THREE.Mesh(new THREE.CylinderGeometry(1.12, 1.12, 0.1, 48, 2), caseMat);
-        backMesh.rotation.x = Math.PI / 2;
-        backMesh.position.z = -0.24;
-        registerPart(backMesh, new THREE.Vector3(0, 0, -1.05));
-
-        // 7. Crown & Chronograph Pushers (Right)
-        const crownMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.16, 0.28, 24, 2), handMat);
-        crownMesh.rotation.z = Math.PI / 2;
-        crownMesh.position.set(1.3, 0, 0);
-        registerPart(crownMesh, new THREE.Vector3(0.85, 0, 0));
-
-        // 8. Top & Bottom Integrated Strap Links
-        const strapMat = createMat({ color: 0x1e293b, metalness: 0.5, roughness: 0.45, wireframe: isWire });
-        const topStrap = new THREE.Mesh(new THREE.BoxGeometry(0.95, 0.85, 0.22, 8, 8, 2), strapMat);
-        topStrap.position.set(0, 1.38, 0);
-        registerPart(topStrap, new THREE.Vector3(0, 0.75, 0));
-
-        const botStrap = new THREE.Mesh(new THREE.BoxGeometry(0.95, 0.85, 0.22, 8, 8, 2), strapMat);
-        botStrap.position.set(0, -1.38, 0);
-        registerPart(botStrap, new THREE.Vector3(0, -0.75, 0));
-
-      } else if (type === 'serum') {
-        // 1. Heavy Outer Glass Vessel
-        const bottleGlassMat = createMat({
-          color: 0xbae6fd,
-          metalness: 0.05,
-          roughness: 0.08,
-          transparent: true,
-          opacity: isWire ? 0.85 : 0.38,
-          clearcoat: 1.0,
-          wireframe: isWire
-        });
-        const bottleMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.82, 0.82, 1.75, 48, 8), bottleGlassMat);
-        bottleMesh.position.y = -0.35;
-        registerPart(bottleMesh, new THREE.Vector3(0, -0.3, 0));
-
-        // 2. Inner Golden Hyaluronic Elixir Core
-        const liquidMat = createMat({
-          color: 0xf59e0b,
-          metalness: 0.2,
-          roughness: 0.15,
-          transparent: true,
-          opacity: 0.88,
-          clearcoat: 0.8,
-          wireframe: isWire
-        });
-        const liquidMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.68, 0.68, 1.42, 40, 6), liquidMat);
-        liquidMesh.position.y = -0.4;
-        registerPart(liquidMesh, new THREE.Vector3(-1.05, -0.3, 0));
-
-        // 3. Anodized Gold Neck Collar
-        const collarMat = createMat({ color: 0xfbbf24, metalness: 0.95, roughness: 0.16, wireframe: isWire });
-        const collarMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.46, 0.36, 40, 3), collarMat);
-        collarMesh.position.y = 0.72;
-        registerPart(collarMesh, new THREE.Vector3(0, 0.65, 0));
-
-        // 4. Tactile Pipette Bulb Cap
-        const bulbMat = createMat({ color: 0x0f172a, metalness: 0.3, roughness: 0.35, clearcoat: 0.5, wireframe: isWire });
-        const bulbMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.34, 0.55, 36, 4), bulbMat);
-        bulbMesh.position.y = 1.15;
-        registerPart(bulbMesh, new THREE.Vector3(0, 1.3, 0));
-
-        // 5. Internal Glass Dropper Pipette Tube
-        const pipetteMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.04, 1.45, 24, 4), bottleGlassMat);
-        pipetteMesh.position.y = -0.1;
-        registerPart(pipetteMesh, new THREE.Vector3(1.05, 0.35, 0));
-
-        // 6. Heavy Machined Base Pad
-        const baseMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.84, 0.84, 0.16, 48, 2), collarMat);
-        baseMesh.position.y = -1.3;
-        registerPart(baseMesh, new THREE.Vector3(0, -0.95, 0));
-
-      } else if (type === 'audio') {
-        // 1. CNC Anodized Charging Case Lower Body
-        const shellMat = createMat({ color: 0x1e293b, metalness: 0.82, roughness: 0.24, clearcoat: 0.5, wireframe: isWire });
-        const lowerCase = new THREE.Mesh(new THREE.BoxGeometry(1.85, 1.05, 0.95, 10, 6, 6), shellMat);
-        lowerCase.position.y = -0.38;
-        registerPart(lowerCase, new THREE.Vector3(0, -0.65, 0));
-
-        // 2. Magnetic Translucent Cyber Lid
-        const lidMat = createMat({
-          color: 0x38bdf8,
-          metalness: 0.2,
-          roughness: 0.12,
-          transparent: true,
-          opacity: isWire ? 0.85 : 0.45,
-          clearcoat: 1.0,
-          wireframe: isWire
-        });
-        const upperLid = new THREE.Mesh(new THREE.BoxGeometry(1.85, 0.58, 0.95, 10, 4, 6), lidMat);
-        upperLid.position.y = 0.48;
-        registerPart(upperLid, new THREE.Vector3(0, 1.05, 0));
-
-        // 3. Left & Right Acoustic Earbuds + Neodymium Drivers
-        const budMat = createMat({ color: 0xe2e8f0, metalness: 0.88, roughness: 0.18, wireframe: isWire });
-        const driverMat = createMat({ color: 0x22d3ee, metalness: 0.9, roughness: 0.15, wireframe: isWire });
-
-        const leftBud = new THREE.Group();
-        const lHead = new THREE.Mesh(new THREE.SphereGeometry(0.34, 32, 24), budMat);
-        const lStem = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.09, 0.72, 24, 3), driverMat);
-        lStem.position.y = -0.42;
-        leftBud.add(lHead, lStem);
-        leftBud.position.set(-0.48, 0.15, 0);
-        registerPart(leftBud, new THREE.Vector3(-0.85, 0.45, 0.45));
-
-        const rightBud = new THREE.Group();
-        const rHead = new THREE.Mesh(new THREE.SphereGeometry(0.34, 32, 24), budMat);
-        const rStem = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.09, 0.72, 24, 3), driverMat);
-        rStem.position.y = -0.42;
-        rightBud.add(rHead, rStem);
-        rightBud.position.set(0.48, 0.15, 0);
-        registerPart(rightBud, new THREE.Vector3(0.85, 0.45, 0.45));
-
-        // 4. Internal Gold-Plated Logic PCB
-        const pcbMat = createMat({ color: 0x10b981, metalness: 0.75, roughness: 0.25, wireframe: isWire });
-        const pcbMesh = new THREE.Mesh(new THREE.BoxGeometry(1.5, 0.1, 0.65, 8, 2, 4), pcbMat);
-        pcbMesh.position.y = -0.35;
-        registerPart(pcbMesh, new THREE.Vector3(0, 0, -1.1));
-      }
-
-      scene.add(currentProductGroup);
-
-      // Update HUD
-      const info = productTelemetry[type];
-      document.getElementById('hud-asset-name').textContent = info.name;
-      document.getElementById('hud-polycount').textContent = info.poly;
-      document.getElementById('hud-shader').textContent = info.shader;
-    }
-
-    function switchProduct(type) {
-      currentProductKey = type;
-      document.querySelectorAll('.product-btn').forEach(btn => {
-        btn.classList.remove('active-product-btn');
-        btn.classList.add('text-slate-400');
-      });
-      const activeBtn = document.getElementById('prod-' + type);
-      activeBtn.classList.add('active-product-btn');
-      activeBtn.classList.remove('text-slate-400');
-
-      buildProductMesh(type);
-    }
-
-    function setRenderMode(mode) {
-      currentRenderMode = mode;
-      const isWire = mode === 'wireframe';
-
-      document.getElementById('mode-studio').classList.toggle('active-mode-btn', mode === 'studio');
-      document.getElementById('mode-wireframe').classList.toggle('active-mode-btn', mode === 'wireframe');
-
-      allProductMaterials.forEach(mat => {
-        mat.wireframe = isWire;
-        mat.needsUpdate = true;
-      });
-    }
-
-    function toggleExplodeView() {
-      targetExplode = targetExplode > 0.5 ? 0 : 1;
-      const pct = Math.round(targetExplode * 100);
-      document.getElementById('explode-slider').value = pct;
-      updateExplodeHUD(pct);
-    }
-
-    function onExplodeSlider(val) {
-      targetExplode = parseFloat(val) / 100;
-      updateExplodeHUD(Math.round(val));
-    }
-
-    function updateExplodeHUD(pct) {
-      document.getElementById('explode-pct').textContent = pct + '%';
-      const stateEl = document.getElementById('hud-assembly-state');
-      const btnLabel = document.getElementById('explode-btn-label');
-
-      if (pct > 5) {
-        stateEl.textContent = `EXPLODED VIEW (${pct}% SEPARATION)`;
-        stateEl.className = 'text-amber-400 font-semibold';
-        btnLabel.textContent = '🔧 Mode 3: Assemble Components';
+    function switchCardMedia(projId, type, url, thumbEl) {
+      const box = document.getElementById('media-box-' + projId);
+      if (!box) return;
+      if (type === 'video') {
+        box.innerHTML = `<video src="${url}" controls autoplay muted loop playsinline></video><span class="media-badge">&#127916; 3D Animation</span>`;
       } else {
-        stateEl.textContent = 'ASSEMBLED (0% EXPLODED)';
-        stateEl.className = 'text-emerald-400 font-semibold';
-        btnLabel.textContent = '💥 Mode 3: Explode Components';
+        box.innerHTML = `<img src="${url}" alt="3D Render" onclick="openLightbox('image', '${url}')" style="cursor:zoom-in;" /><span class="media-badge">&#128247; 4K Render (Click to Zoom)</span>`;
+      }
+      const card = box.closest('.project-card');
+      if (card && thumbEl) {
+        card.querySelectorAll('.thumb-item').forEach(t => t.classList.remove('active'));
+        thumbEl.classList.add('active');
       }
     }
 
-    function setLightingPreset(preset) {
-      if (preset === 'cyber') {
-        rimLight.color.setHex(0x38bdf8);
-        fillLight.color.setHex(0x10b981);
-      } else if (preset === 'warm') {
-        rimLight.color.setHex(0xf59e0b);
-        fillLight.color.setHex(0xfda4af);
-      } else if (preset === 'emerald') {
-        rimLight.color.setHex(0x34d399);
-        fillLight.color.setHex(0x60a5fa);
-      }
-    }
+    function renderProjects() {
+      const grid = document.getElementById('projectsGrid');
+      const list = currentFilter === 'ALL' ? PROJECTS : PROJECTS.filter(p => p.category === currentFilter);
 
-    function toggleAutoRotate() {
-      autoRotate = !autoRotate;
-      const btn = document.getElementById('btn-autorotate');
-      btn.textContent = autoRotate ? '🔄 Auto-Turntable: ON' : '⏸️ Auto-Turntable: PAUSED';
-    }
+      grid.innerHTML = list.map(p => {
+        const hasVideo = p.videos && p.videos.length > 0;
+        const initialMedia = hasVideo
+          ? `<video src="${p.heroVideo || p.videos[0].url}" controls muted loop playsinline poster="${p.coverImage}"></video><span class="media-badge">&#127916; 3D Animation (${p.videos.length} Videos)</span>`
+          : `<img src="${p.coverImage}" alt="${p.title}" onclick="openLightbox('image', '${p.coverImage}')" style="cursor:zoom-in;" /><span class="media-badge">&#128247; 4K Studio Render (${p.images.length} Shots)</span>`;
 
-    function animateStage() {
-      requestAnimationFrame(animateStage);
+        const videoThumbs = (p.videos || []).map((v, i) => `
+          <div class="thumb-item ${i === 0 ? 'active' : ''}" onclick="switchCardMedia('${p.id}', 'video', '${v.url}', this)" title="${v.label}">
+            <video src="${v.url}#t=0.5" muted preload="metadata"></video>
+            <div class="thumb-play">&#9654;</div>
+          </div>
+        `).join('');
 
-      // Smooth Lerp for Exploded View
-      currentExplode += (targetExplode - currentExplode) * 0.08;
-      explodableParts.forEach(part => {
-        const b = part.userData.basePos;
-        const e = part.userData.explodeVec;
-        part.position.set(
-          b.x + e.x * currentExplode,
-          b.y + e.y * currentExplode,
-          b.z + e.z * currentExplode
-        );
-      });
+        const imgThumbs = (p.images || []).map((img, i) => `
+          <div class="thumb-item ${!hasVideo && i === 0 ? 'active' : ''}" onclick="switchCardMedia('${p.id}', 'image', '${img}', this)" title="View 4K Render">
+            <img src="${img}" loading="lazy" alt="Thumb" />
+          </div>
+        `).join('');
 
-      if (currentProductGroup && autoRotate) {
-        currentProductGroup.rotation.y += 0.0055;
-      }
-
-      controls.update();
-      renderer.render(scene, camera);
-    }
-
-    function onWindowResize() {
-      const container = document.getElementById('webgl-canvas-container');
-      if (!container || !renderer) return;
-      camera.aspect = container.clientWidth / container.clientHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(container.clientWidth, container.clientHeight);
-    }
-
-    /*************************************************************************
-     * 2. 6 HIGH-IMPACT CGI CASE STUDIES DATA + PROCEDURAL STUDIO PREVIEWS
-     *************************************************************************/
-    const defaultCaseStudies = [
-      {
-        id: 'cs-1',
-        title: 'K-PRO 75% CNC Aluminum Mechanical Keyboard',
-        category: 'tech',
-        categoryLabel: 'Tech & Hardware',
-        polycount: '68,400 Quads (Sub-D)',
-        tools: ['Blender', 'Octane', 'Substance 3D'],
-        turnaround: '6 Days',
-        accent: '#38bdf8',
-        beforeAfter: 'BEFORE: Raw factory STEP CAD file with triangulated bevels → AFTER: 15s Exploded PCB/Gasket-Mount CGI Launch Video + 8 Anodized Colorway 4K Renders.',
-        deliverables: [
-          'Retopologized quad mesh for macro hot-swap switch & brass weight close-ups',
-          '15-second 9:16 & 16:9 exploded-view assembly animation at 60fps',
-          '24 photorealistic 4K transparent PNG renders across 6 keycap colorways'
-        ]
-      },
-      {
-        id: 'cs-2',
-        title: 'AETHER Titanium Skeleton Chronograph Watch',
-        category: 'watches',
-        categoryLabel: 'Luxury Watches & Eyewear',
-        polycount: '92,100 Quads (Macro)',
-        tools: ['Cinema 4D', 'Redshift', 'Substance 3D'],
-        turnaround: '8 Days',
-        accent: '#f59e0b',
-        beforeAfter: 'BEFORE: 2D Illustrator technical blueprints & movement specs → AFTER: Zero-dust 4K macro tourbillon motion reel & 360° interactive PDP turntable.',
-        deliverables: [
-          'Full internal escapement wheel & brushed titanium lug Sub-D modeling',
-          'Anisotropic radial metal shaders & anti-reflective sapphire caustics',
-          '20-second luxury lighting reveal trailer for paid Meta & YouTube pre-roll'
-        ]
-      },
-      {
-        id: 'cs-3',
-        title: 'LUMIÈRE Botanical Gold Facial Elixir & Dropper',
-        category: 'skincare',
-        categoryLabel: 'Skincare & Fragrance',
-        polycount: '31,500 Quads (Sub-D)',
-        tools: ['Blender', 'Octane', 'Houdini'],
-        turnaround: '5 Days',
-        accent: '#a855f7',
-        beforeAfter: 'BEFORE: Smartphone photo of unlabelled glass bottle prototype → AFTER: Refractive caustic glass renders + viscous golden serum droplet animation.',
-        deliverables: [
-          'Custom gold-foil embossed label shader with micro-roughness maps',
-          'Viscous pipette serum drop simulation & dewy botanical studio environment',
-          'Amazon A+ comparison modules & Sephora-grade 4K hero imagery'
-        ]
-      },
-      {
-        id: 'cs-4',
-        title: 'VOLT-ZERO Functional Nootropic Energy Can',
-        category: 'beverage',
-        categoryLabel: 'Beverage & LiquidFX',
-        polycount: '44,000 Quads + Sim',
-        tools: ['Cinema 4D', 'Houdini', 'Redshift'],
-        turnaround: '5 Days',
-        accent: '#10b981',
-        beforeAfter: 'BEFORE: Flat 2D PDF can label dieline before canning run → AFTER: High-speed 3D condensation & citrus liquid splash video for 8 flavor SKUs.',
-        deliverables: [
-          'Procedural micro-condensation droplet rig with art-directable drips',
-          'Dynamic zero-gravity ice & liquid splash transition reel (9:16 TikTok/Reels)',
-          'Instant 8-flavor SKU packshot rollout from a single master lighting rig'
-        ]
-      },
-      {
-        id: 'cs-5',
-        title: 'SONIC-ANC Transparent Edition Wireless Earbuds',
-        category: 'tech',
-        categoryLabel: 'Tech & Hardware',
-        polycount: '59,300 Quads (Sub-D)',
-        tools: ['Blender', 'Cycles / Octane', 'Substance 3D'],
-        turnaround: '6 Days',
-        accent: '#22d3ee',
-        beforeAfter: 'BEFORE: Engineering IGES shell & PCB schematic → AFTER: Translucent polycarbonate shader showcase + acoustic driver wave animation.',
-        deliverables: [
-          'Internal copper voice-coil, magnet, and logic board micro-detailing',
-          'Magnetic charging case snap-shut physics & LED status light animation',
-          'Hero launch landing page WebM loops & 4K print-ready renders'
-        ]
-      },
-      {
-        id: 'cs-6',
-        title: 'NORDIC-ARC Sculptural Lounge Chair & Pendant Lamp',
-        category: 'furniture',
-        categoryLabel: 'Furniture & Industrial',
-        polycount: '74,800 Quads (ArchViz)',
-        tools: ['Blender', 'Octane', 'Substance 3D'],
-        turnaround: '7 Days',
-        accent: '#fb7185',
-        beforeAfter: 'BEFORE: Millwork dimension drawing & fabric swatches → AFTER: Photorealistic Scandinavian loft scene + 18 bouclé & walnut finish swaps.',
-        deliverables: [
-          'True-to-scale bent walnut veneer grain & tactile bouclé displacement shaders',
-          '6 architectural daylight & warm evening mood renders for e-commerce catalog',
-          'AR-ready GLB / USDZ optimized 3D asset for mobile "View in Your Room"'
-        ]
-      }
-    ];
-
-    function getAllCaseStudies() {
-      const customRaw = localStorage.getItem('mehedi_custom_projects');
-      const customList = customRaw ? JSON.parse(customRaw) : [];
-      return [...customList, ...defaultCaseStudies];
-    }
-
-    function drawProceduralRenderCard(canvas, item) {
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      const w = canvas.width;
-      const h = canvas.height;
-
-      // Studio Dark Gradient Backdrop
-      const bg = ctx.createRadialGradient(w * 0.5, h * 0.42, 10, w * 0.5, h * 0.5, w * 0.75);
-      bg.addColorStop(0, '#172033');
-      bg.addColorStop(0.55, '#0b0f19');
-      bg.addColorStop(1, '#05070b');
-      ctx.fillStyle = bg;
-      ctx.fillRect(0, 0, w, h);
-
-      // Colored Rim Light Glow
-      const glow = ctx.createRadialGradient(w * 0.5, h * 0.45, 5, w * 0.5, h * 0.45, 130);
-      glow.addColorStop(0, item.accent + '44');
-      glow.addColorStop(1, 'transparent');
-      ctx.fillStyle = glow;
-      ctx.fillRect(0, 0, w, h);
-
-      // Subtle Perspective Floor Grid
-      ctx.strokeStyle = 'rgba(255,255,255,0.05)';
-      ctx.lineWidth = 1;
-      for (let i = 0; i < w; i += 28) {
-        ctx.beginPath();
-        ctx.moveTo(i, h * 0.72);
-        ctx.lineTo((i - w / 2) * 1.45 + w / 2, h);
-        ctx.stroke();
-      }
-
-      // Draw Split Left Wireframe Overlay vs Right Shaded CGI Silhouette
-      ctx.save();
-      ctx.translate(w / 2, h * 0.46);
-
-      if (item.category === 'watches') {
-        // Luxury Watch Render Illustration
-        ctx.fillStyle = '#1e293b';
-        ctx.strokeStyle = item.accent;
-        ctx.lineWidth = 2.5;
-        ctx.beginPath();
-        ctx.arc(0, 0, 56, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.stroke();
-
-        ctx.strokeStyle = 'rgba(255,255,255,0.22)';
-        ctx.lineWidth = 1;
-        for (let r = 20; r < 54; r += 12) {
-          ctx.beginPath();
-          ctx.arc(0, 0, r, 0, Math.PI * 2);
-          ctx.stroke();
-        }
-        // Watch Hands
-        ctx.strokeStyle = '#fbbf24';
-        ctx.lineWidth = 3;
-        ctx.beginPath();
-        ctx.moveTo(0, 0);
-        ctx.lineTo(22, -26);
-        ctx.moveTo(0, 0);
-        ctx.lineTo(-18, -12);
-        ctx.stroke();
-      } else if (item.category === 'beverage' || item.category === 'skincare') {
-        // Bottle / Beverage Can Cylinder with Specular Highlight
-        const cylGrad = ctx.createLinearGradient(-42, 0, 42, 0);
-        cylGrad.addColorStop(0, '#0f172a');
-        cylGrad.addColorStop(0.35, item.accent);
-        cylGrad.addColorStop(0.7, '#ffffff');
-        cylGrad.addColorStop(1, '#090d16');
-        ctx.fillStyle = cylGrad;
-        ctx.beginPath();
-        ctx.roundRect(-38, -64, 76, 124, 12);
-        ctx.fill();
-
-        // Wireframe Quad Overlay on Left Half
-        ctx.strokeStyle = 'rgba(255,255,255,0.28)';
-        ctx.lineWidth = 0.8;
-        for (let y = -52; y <= 52; y += 16) {
-          ctx.beginPath();
-          ctx.moveTo(-38, y);
-          ctx.lineTo(0, y);
-          ctx.stroke();
-        }
-      } else {
-        // Exploded Hardware / Industrial Isometric Layers
-        const offsets = [-28, 0, 28];
-        offsets.forEach((off, idx) => {
-          ctx.fillStyle = idx === 1 ? item.accent + '33' : 'rgba(30,41,59,0.85)';
-          ctx.strokeStyle = idx === 1 ? item.accent : 'rgba(255,255,255,0.35)';
-          ctx.lineWidth = 1.5;
-          ctx.beginPath();
-          ctx.moveTo(0, -32 + off);
-          ctx.lineTo(68, -6 + off);
-          ctx.lineTo(0, 22 + off);
-          ctx.lineTo(-68, -6 + off);
-          ctx.closePath();
-          ctx.fill();
-          ctx.stroke();
-        });
-      }
-      ctx.restore();
-
-      // Top Left Badge: WIREFRAME / 4K RENDER SPLIT
-      ctx.fillStyle = 'rgba(6, 7, 10, 0.78)';
-      ctx.fillRect(12, 12, 152, 22);
-      ctx.fillStyle = '#38bdf8';
-      ctx.font = '600 10px "JetBrains Mono", monospace';
-      ctx.fillText('● 4K CGI + QUAD MESH', 20, 26);
-    }
-
-    function renderCaseStudies(filter = 'all') {
-      const grid = document.getElementById('case-studies-grid');
-      const allItems = getAllCaseStudies();
-      const filtered = filter === 'all' ? allItems : allItems.filter(x => x.category === filter);
-
-      grid.innerHTML = filtered.map((item, idx) => `
-        <article class="glass-panel rounded-2xl border border-white/10 overflow-hidden glow-border transition flex flex-col justify-between group">
-          <div>
-            <!-- Visual Preview Header -->
-            <div class="relative h-52 bg-studio-900 border-b border-white/10 overflow-hidden">
-              ${item.customImg ? `<img src="${item.customImg}" alt="${item.title}" class="w-full h-full object-cover" onerror="this.style.display='none'" />` : `<canvas id="card-canvas-${idx}" width="440" height="240" class="w-full h-full object-cover group-hover:scale-105 transition duration-500"></canvas>`}
-              <div class="absolute top-3 right-3 px-2.5 py-1 rounded bg-studio-950/85 border border-white/15 text-[11px] font-mono text-emerald-300">
-                ${item.polycount}
+        return `
+          <article class="project-card">
+            <div class="media-box" id="media-box-${p.id}">
+              ${initialMedia}
+            </div>
+            <div class="card-body">
+              <div class="card-client">${p.client} &middot; ${p.category}</div>
+              <h3 class="card-title">${p.title}</h3>
+              <p class="card-desc">${p.description}</p>
+              <div class="tags">
+                ${p.tools.map(t => `<span class="tag">${t}</span>`).join('')}
               </div>
-              <div class="absolute bottom-3 left-3 right-3 flex flex-wrap gap-1.5">
-                ${item.tools.map(t => `<span class="text-[10px] font-mono px-2 py-0.5 rounded bg-studio-950/90 text-slate-200 border border-white/10">${t}</span>`).join('')}
+              <div class="thumb-strip">
+                ${videoThumbs}
+                ${imgThumbs}
               </div>
             </div>
+          </article>
+        `;
+      }).join('');
+    }
 
-            <!-- Card Body -->
-            <div class="p-5 space-y-3">
-              <div class="text-[11px] font-mono uppercase tracking-wider text-sky-400">${item.categoryLabel}</div>
-              <h3 class="font-display text-lg font-bold text-white group-hover:text-sky-300 transition leading-snug">${item.title}</h3>
-              <p class="text-xs text-slate-300 leading-relaxed bg-studio-950/70 p-3 rounded-xl border border-white/5">
-                ${item.beforeAfter}
-              </p>
+    function renderAllVideos() {
+      const allVids = [];
+      PROJECTS.forEach(p => {
+        (p.videos || []).forEach(v => {
+          allVids.push({ ...v, client: p.client, category: p.category, poster: p.coverImage });
+        });
+      });
+      document.getElementById('allVideosGrid').innerHTML = allVids.map(v => `
+        <div class="video-card">
+          <video src="${v.url}" controls preload="metadata" playsinline></video>
+          <div class="video-card-info">
+            <div>
+              <div class="video-card-title">${v.label}</div>
+              <div class="video-card-sub">${v.client} &middot; ${v.category}</div>
             </div>
           </div>
-
-          <div class="px-5 pb-5 pt-2 flex items-center justify-between border-t border-white/5">
-            <a href="https://www.behance.net/meheditwcm" target="_blank" rel="noopener" class="text-[11px] font-mono text-slate-300 hover:text-sky-400 transition">Bē Behance ↗</a>
-            <button onclick="openCaseModal('${item.id}')" class="text-xs font-mono text-sky-400 hover:text-sky-300 font-semibold">
-              Inspect Breakdown →
-            </button>
-          </div>
-        </article>
+        </div>
       `).join('');
+    }
 
-      // Draw procedural canvases
-      filtered.forEach((item, idx) => {
-        if (!item.customImg) {
-          drawProceduralRenderCard(document.getElementById(`card-canvas-${idx}`), item);
-        }
+    function renderGlbSelector() {
+      const wrap = document.getElementById('glbButtons');
+      wrap.innerHTML = GLB_MODELS.map((m, i) => `
+        <button class="reel-tab ${i === 0 ? 'active' : ''}" onclick="selectGlb('${m.file}', this)">${m.label}</button>
+      `).join('');
+    }
+
+    function selectGlb(file, btn) {
+      const viewer = document.getElementById('realGlbViewer');
+      viewer.src = file;
+      document.querySelectorAll('#glbButtons .reel-tab').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+    }
+
+    function renderAllImages() {
+      const allImgs = [];
+      PROJECTS.forEach(p => {
+        (p.images || []).forEach(img => {
+          allImgs.push({ url: img, title: p.title, client: p.client });
+        });
       });
+      document.getElementById('allImagesGrid').innerHTML = allImgs.map(im => `
+        <div class="img-card" onclick="openLightbox('image', '${im.url}')" title="${im.title}">
+          <img src="${im.url}" loading="lazy" alt="${im.title}" />
+        </div>
+      `).join('');
     }
 
-    function filterCaseStudies(category, btnEl) {
-      document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active-mode-btn'));
-      if (btnEl) btnEl.classList.add('active-mode-btn');
-      renderCaseStudies(category);
+    function openLightbox(type, url) {
+      const lb = document.getElementById('lightbox');
+      const inner = document.getElementById('lightboxInner');
+      inner.innerHTML = `
+        <button class="lightbox-close" onclick="document.getElementById('lightbox').classList.remove('open')">&#10005; Close</button>
+        <img src="${url}" alt="Full size 3D render" />
+      `;
+      lb.classList.add('open');
     }
 
-    function openCaseModal(id) {
-      const item = getAllCaseStudies().find(x => x.id === id);
-      if (!item) return;
-      document.getElementById('modal-category').textContent = item.categoryLabel;
-      document.getElementById('modal-title').textContent = item.title;
-      document.getElementById('modal-poly').textContent = item.polycount;
-      document.getElementById('modal-tools').textContent = item.tools.join(' • ');
-      document.getElementById('modal-time').textContent = item.turnaround || '5-7 Days';
-      document.getElementById('modal-story').textContent = item.beforeAfter;
-      document.getElementById('modal-deliverables').innerHTML = (item.deliverables || [
-        'Clean quad subdivision-ready 3D master asset',
-        '4K photorealistic PDP & lifestyle studio renders',
-        '15-second CGI product launch animation for paid social'
-      ]).map(d => `<li>${d}</li>`).join('');
-
-      const modal = document.getElementById('case-modal');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-    }
-
-    function closeCaseModal() {
-      const modal = document.getElementById('case-modal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    }
-
-    /*************************************************************************
-     * 3. BEFORE (QUAD WIREFRAME) VS AFTER (4K CGI RENDER) COMPARISON CANVAS
-     *************************************************************************/
-    function initBeforeAfterCanvases() {
-      const beforeCanvas = document.getElementById('ba-before-canvas');
-      const afterCanvas = document.getElementById('ba-after-canvas');
-      if (!beforeCanvas || !afterCanvas) return;
-
-      drawComparisonScene(beforeCanvas.getContext('2d'), true);
-      drawComparisonScene(afterCanvas.getContext('2d'), false);
-    }
-
-    function drawComparisonScene(ctx, isWireframeBefore) {
-      const w = 800, h = 450;
-      // Background
-      const grad = ctx.createRadialGradient(w * 0.5, h * 0.45, 20, w * 0.5, h * 0.5, 420);
-      if (isWireframeBefore) {
-        grad.addColorStop(0, '#0f172a');
-        grad.addColorStop(1, '#060911');
-      } else {
-        grad.addColorStop(0, '#162844');
-        grad.addColorStop(0.6, '#09101d');
-        grad.addColorStop(1, '#04060a');
+    function closeLightbox(e) {
+      if (e.target.id === 'lightbox') {
+        document.getElementById('lightbox').classList.remove('open');
       }
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, w, h);
-
-      // Center Hero Product: Precision Camera Lens / Chronograph Cylinder Assembly
-      ctx.save();
-      ctx.translate(w / 2, h / 2);
-
-      for (let ring = 145; ring >= 35; ring -= 22) {
-        ctx.beginPath();
-        ctx.arc(0, 0, ring, 0, Math.PI * 2);
-        if (isWireframeBefore) {
-          ctx.fillStyle = 'rgba(30, 41, 59, 0.45)';
-          ctx.fill();
-          ctx.strokeStyle = '#38bdf8';
-          ctx.lineWidth = 1.2;
-          ctx.stroke();
-        } else {
-          const metal = ctx.createLinearGradient(-ring, -ring, ring, ring);
-          metal.addColorStop(0, '#e2e8f0');
-          metal.addColorStop(0.35, '#475569');
-          metal.addColorStop(0.7, '#0f172a');
-          metal.addColorStop(1, '#38bdf8');
-          ctx.fillStyle = metal;
-          ctx.fill();
-          ctx.strokeStyle = 'rgba(255,255,255,0.22)';
-          ctx.lineWidth = 1.5;
-          ctx.stroke();
-        }
-      }
-
-      // Radial Quad Subdivision Lines
-      for (let a = 0; a < Math.PI * 2; a += Math.PI / 16) {
-        ctx.beginPath();
-        ctx.moveTo(Math.cos(a) * 35, Math.sin(a) * 35);
-        ctx.lineTo(Math.cos(a) * 145, Math.sin(a) * 145);
-        ctx.strokeStyle = isWireframeBefore ? 'rgba(56, 189, 248, 0.55)' : 'rgba(255, 255, 255, 0.06)';
-        ctx.lineWidth = 1;
-        ctx.stroke();
-      }
-
-      // Optical Glass Core Highlight on Final Render
-      if (!isWireframeBefore) {
-        const lensGlow = ctx.createRadialGradient(-18, -18, 4, 0, 0, 65);
-        lensGlow.addColorStop(0, 'rgba(56, 189, 248, 0.85)');
-        lensGlow.addColorStop(0.5, 'rgba(16, 185, 129, 0.35)');
-        lensGlow.addColorStop(1, 'transparent');
-        ctx.fillStyle = lensGlow;
-        ctx.beginPath();
-        ctx.arc(0, 0, 65, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      ctx.restore();
-
-      // Label Watermark
-      ctx.font = '600 13px "JetBrains Mono", monospace';
-      ctx.fillStyle = isWireframeBefore ? '#38bdf8' : '#10b981';
-      ctx.fillText(
-        isWireframeBefore ? 'BEFORE: CLEAN SUB-D QUAD TOPOLOGY & CLAY PASS' : 'AFTER: 4K PHOTOREALISTIC STUDIO SHADER & CAUSTICS',
-        24,
-        h - 24
-      );
     }
 
-    function updateBeforeAfter(val) {
-      document.getElementById('ba-before-clip').style.width = val + '%';
-      document.getElementById('ba-handle').style.left = val + '%';
-    }
-
-    /*************************************************************************
-     * 4. QUOTE / FREE 48-HR TEST FORM & PORTFOLIO CUSTOMIZER DRAWER
-     *************************************************************************/
-    function handleQuoteSubmit(e) {
-      e.preventDefault();
-      const name = document.getElementById('form-name').value.trim();
-      const company = document.getElementById('form-company').value.trim();
-      const type = document.getElementById('form-type').value;
-      const url = document.getElementById('form-url').value.trim() || 'Not specified';
-      const notes = document.getElementById('form-notes').value.trim();
-
-      const subject = encodeURIComponent(`[3D Project Brief] ${type} — ${company}`);
-      const bodyText = `Hi Mehedi,\n\nI checked out your interactive 3D portfolio and would like to request a ${type}.\n\n• Name: ${name}\n• Company / Studio: ${company}\n• Product Link / CAD Status: ${url}\n• Project Goals & Deliverables:\n${notes}\n\nLooking forward to hearing your thoughts!\n\nBest,\n${name}`;
-      const body = encodeURIComponent(bodyText);
-
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(bodyText).catch(() => {});
-      }
-
-      const feedback = document.getElementById('form-feedback');
-      feedback.classList.remove('hidden');
-
-      window.location.href = `mailto:meheditwcm@gmail.com?subject=${subject}&body=${body}`;
-    }
-
-    function toggleCustomizerDrawer() {
-      const drawer = document.getElementById('customizer-drawer');
-      drawer.classList.toggle('translate-x-full');
-    }
-
-    function addCustomProjectCard(e) {
-      e.preventDefault();
-      const cat = document.getElementById('cust-cat').value;
-      const catLabels = {
-        tech: 'Tech & Hardware',
-        watches: 'Luxury Watches & Eyewear',
-        skincare: 'Skincare & Fragrance',
-        beverage: 'Beverage & LiquidFX',
-        furniture: 'Furniture & Industrial'
-      };
-
-      const newCard = {
-        id: 'cust-' + Date.now(),
-        title: document.getElementById('cust-title').value.trim(),
-        category: cat,
-        categoryLabel: catLabels[cat] || 'Custom 3D Project',
-        polycount: document.getElementById('cust-poly').value.trim() || '50,000 Quads (Sub-D)',
-        tools: (document.getElementById('cust-tools').value || 'Blender, Octane, Substance 3D').split(',').map(s => s.trim()),
-        turnaround: '5 Days',
-        accent: '#38bdf8',
-        customImg: document.getElementById('cust-img').value.trim() || '',
-        beforeAfter: document.getElementById('cust-desc').value.trim()
-      };
-
-      const existing = JSON.parse(localStorage.getItem('mehedi_custom_projects') || '[]');
-      existing.unshift(newCard);
-      localStorage.setItem('mehedi_custom_projects', JSON.stringify(existing));
-
-      renderCaseStudies('all');
-      e.target.reset();
-      toggleCustomizerDrawer();
-    }
-
-    function resetCustomProjects() {
-      localStorage.removeItem('mehedi_custom_projects');
-      renderCaseStudies('all');
-      toggleCustomizerDrawer();
-    }
-
-    // Initialize everything on DOMContentLoaded
-    window.addEventListener('DOMContentLoaded', () => {
-      initWebGLStage();
-      renderCaseStudies('all');
-      initBeforeAfterCanvases();
-    });
+    renderProjects();
+    renderAllVideos();
+    renderGlbSelector();
+    renderAllImages();
   </script>
 </body>
 </html>
